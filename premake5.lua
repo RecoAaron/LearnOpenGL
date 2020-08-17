@@ -8,20 +8,23 @@ workspace "SandEngine"  -- 设置工作空间名称
         "Dist"
     }
 
-outputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}" -- 输出目录  Debug-Windows-x64
+outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}" -- 输出目录  Debug-Windows-x64
+
+startproject "Sandbox"
 
 -- 包含解决方案的目录
 IncludeDir = {}
+IncludeDir["GLFW"] = "SandEngine/vendor/GLFW/include"
 
-startproject "Sandbox"
+include "SandEngine/vendor/GLFW"
 
 project "SandEngine" -- 设置项目
     location "SandEngine"
     kind "SharedLib"  -- dll 输出
     language "C++"
 
-    targetdir("bin/" .. outputDir .. "/%{prj.name}")  -- target 目录
-    objdir("bin-int/" .. outputDir .. "/%{prj.name}") -- obj 目录
+    targetdir("bin/" .. outputdir .. "/%{prj.name}")  -- target 目录
+    objdir("bin-int/" .. outputdir .. "/%{prj.name}") -- obj 目录
 
     pchheader "sdpch.h"
     pchsource "SandEngine/src/sdpch.cpp"
@@ -35,7 +38,14 @@ project "SandEngine" -- 设置项目
     includedirs
     {
         "%{prj.name}/vendor/spdlog/include",
-        "%{prj.name}/src"
+        "%{prj.name}/src",
+        "%{IncludeDir.GLFW}"
+    }
+
+    links
+    {
+        "GLFW",
+        "opengl32.lib"
     }
 
     filter "system:windows"
@@ -51,11 +61,11 @@ project "SandEngine" -- 设置项目
 
         -- 编译完成后自动将 .dll 放置到 .exe 同目录
         postbuildcommands {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" ..outputDir.. "/Sandbox")
+            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" ..outputdir.. "/Sandbox")
         }
 
         filter "configurations:Debug" -- 只定义在 Debug 模式下
-            defines "SE_DEGUG"
+            defines "SE_DEBUG"
             symbols "On"
 
         filter "configurations:Release" --只定义在 Release 模式下
@@ -71,8 +81,8 @@ project "Sandbox" -- 设置项目
     kind "ConsoleApp"  -- exe 输出
     language "C++"
         
-    targetdir("bin/" .. outputDir .. "/%{prj.name}")  -- target 目录
-    objdir("bin-int/" .. outputDir .. "/%{prj.name}") -- obj 目录
+    targetdir("bin/" .. outputdir .. "/%{prj.name}")  -- target 目录
+    objdir("bin-int/" .. outputdir .. "/%{prj.name}") -- obj 目录
         
     files
     {
@@ -102,7 +112,7 @@ project "Sandbox" -- 设置项目
         }
         
         filter "configurations:Debug" -- 只定义在 Debug 模式下
-            defines "SE_DEGUG"
+            defines "SE_DEBUG"
             symbols "On"
         
         filter "configurations:Release" --只定义在 Release 模式下

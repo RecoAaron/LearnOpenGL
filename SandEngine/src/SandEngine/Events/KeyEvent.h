@@ -13,39 +13,39 @@ namespace SE {
     {
     public:
         /// 获取按键的编码
-        inline int GetKeyCode() const { return m_KeyCode; }
+        inline int GetKeyCode() const { return m_nKeyCode; }
 
         /* 设置事件类型为：键盘事件 | 输入事件 */
         SE_EVENT_CLASS_CATEGORY(SE_EC_KEYBOARD | SE_EC_INPUT)
 
     protected:
-        CKeyEvent(int keycode)
-            : m_KeyCode(keycode)
+        CKeyEvent(int nKeycode)
+            : m_nKeyCode(nKeycode)
         {
 
         }
 
         /* 按键的编码 */
-        int m_KeyCode;
+        int m_nKeyCode;
     };
 
     class SE_API CKeyPressedEvent : public CKeyEvent
     {
     public:
-        CKeyPressedEvent(int keycode, int repeatCount)
-            :CKeyEvent(keycode), m_RepeatCount(repeatCount)
+        CKeyPressedEvent(int nKeycode, int nRepeatCount)
+            :CKeyEvent(nKeycode), m_nRepeatCount(nRepeatCount)
         {
 
         }
 
         /// 获取重复次数，超过0标识键长按
-        inline int GetRepeatCount() const { return m_RepeatCount; }
+        inline int GetRepeatCount() const { return m_nRepeatCount; }
 
         /// 重写输出函数，输出按键的编码和重复次数
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "Key Pressed:" << m_KeyCode << "(" << m_RepeatCount << " repeats)";
+            ss << "Key Pressed:" << m_nKeyCode << "(" << m_nRepeatCount << " repeats)";
             return ss.str();
         }
 
@@ -54,14 +54,14 @@ namespace SE {
     
     private:
         /* 按键的重复次数 */
-    	int m_RepeatCount;
+        int m_nRepeatCount;
     };
 
-    class S3D_API CKeyReleasedEvent : public CKeyEvent
+    class SE_API CKeyReleasedEvent : public CKeyEvent
     {
     public:
-        CKeyReleasedEvent(int keycode)
-            : CKeyEvent(keycode)
+        CKeyReleasedEvent(int nKeycode)
+            : CKeyEvent(nKeycode)
         {
 
         }
@@ -70,11 +70,11 @@ namespace SE {
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "Key Released:" << m_KeyCode;
+            ss << "Key Released:" << m_nKeyCode;
             return ss.str();
         }
 
         /// 设置键按下事件为：键按下事件
-        S3D_EVENT_CLASS_TYPE(SE_ET_KEY_RELEASED)
+        SE_EVENT_CLASS_TYPE(SE_ET_KEY_RELEASED)
     };
 }

@@ -29,10 +29,46 @@
     #error "SandEngine is only for Windows!"
 #endif
 
+/* debug 模式下启用 assert */
+#ifdef SE_DEBUG
+    /* Debug 模式下 */
+    #if defined(SE_PLATFORM_WINDOWS)
+        /* Windows 平台上 */
+        #define SE_DEBUGBREAK() __debugbreak()
+    #else
+        /* 其他平台暂不支持 */
+        #error "Platform doesn't support debugbreak yet!"
+    #endif
+    /* 启用 assert */
+    #define SE_ENABLE_ASSERTS
+#else
+    /* 其他模式下不启用 assert */
+    #define SE_DEBUGBREAK()
+#endif
+
+#ifdef SE_ENABLE_ASSERTS
+    /* 如果启用 assert 不满足条件程序会出现 break */
+    #define SE_ASSERT(x, ...) { if(!(x)) { SE_LOG_ERROR("Assertion Failed: {0}", __VA_ARGS__); SE_DEBUGBREAK(); } }
+    #define SE_CORE_ASSERT(x, ...) { if(!(x)) { SE_LOG_ERROR_CORE("Assertion Failed: {0}", __VA_ARGS__); SE_DEBUGBREAK(); } }
+#else
+    /* 不启用 assert 则忽略 */
+    #define HZ_ASSERT(x, ...)
+    #define HZ_CORE_ASSERT(x, ...)
+#endif
+
 /* 取位运算 */
 #define SE_BIT(x) (1 << x)
 
 namespace SE {
+
+    template<typename T>
+    using Scope = std::unique_ptr<T>;
+
+    template<typename T, typename ... Args>
+    constexpr Scope<T> CreateScope(Args&& ... args)
+    {
+        return std::make_unique<T>(std::forward<Args>(args)...);
+    }
 
     template<typename T>
     using Ref = std::shared_ptr<T>;

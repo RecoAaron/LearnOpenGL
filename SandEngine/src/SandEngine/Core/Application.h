@@ -6,8 +6,9 @@
  * Description: 应用程序定义
 *************************************************/
 #include "SandEngine/Core/Base.h"
+#include "SandEngine/Core/Window.h"
 
-namespace SandEngine {
+namespace SE {
 
     class SE_API CApplication
     {
@@ -17,6 +18,10 @@ namespace SandEngine {
 
         /// 应用程序开始运行
         void Run();
+
+    private:
+        /* 窗口指针 */
+        Scope<CWindow> m_pWindow;
     };
 
     /// 自定义创建应用程序的方法

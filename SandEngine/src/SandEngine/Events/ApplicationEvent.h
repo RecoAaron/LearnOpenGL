@@ -12,22 +12,22 @@ namespace SE {
     class SE_API CWindowResizeEvent : public CEvent
     {
     public:
-        CWindowResizeEvent(unsigned int width, unsigned int height)
-            : m_Width(width), m_Height(height)
+        CWindowResizeEvent(unsigned int nWidth, unsigned int nHeight)
+            : m_nWidth(nWidth), m_nHeight(nHeight)
         {
 
         }
 
         /// 获取窗口的宽度
-        inline unsigned int GetWidth() const { return m_Width; }
+        inline unsigned int GetWidth() const { return m_nWidth; }
         /// 获取窗口的高度
-        inline unsigned int GetHeight() const { return m_Height; }
+        inline unsigned int GetHeight() const { return m_nHeight; }
 
         /// 重写输出函数，输出窗口的宽度和高度
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "Window Resized:" << m_Width << ", " << m_Height;
+            ss << "Window Resized:" << m_nWidth << ", " << m_nHeight;
             return ss.str();
         }
 
@@ -39,7 +39,7 @@ namespace SE {
 
     private:
         /* 窗口的宽度和高度 */
-        unsigned int m_Width, m_Height;
+        unsigned int m_nWidth, m_nHeight;
     };
 
 

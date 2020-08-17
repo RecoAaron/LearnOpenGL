@@ -1,6 +1,6 @@
 #include <SandEngine.h>
 
-class Sandbox : public SandEngine::CApplication
+class Sandbox : public SE::CApplication
 {
 public:
     Sandbox()
@@ -15,7 +15,7 @@ public:
 };
 
 /// 自定义创建应用程序的方法
-SandEngine::CApplication* SandEngine::CreateApplication()
+SE::CApplication* SE::CreateApplication()
 {
     return new Sandbox();
 }

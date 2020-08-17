@@ -12,22 +12,22 @@ namespace SE {
     class SE_API CMouseMoveEvent : public CEvent
     {
     public:
-        CMouseMoveEvent(float x, float y)
-            : m_MouseX(x), m_MouseY(y)
+        CMouseMoveEvent(float nPosX, float nPosY)
+            : m_nMouseX(nPosX), m_nMouseY(nPosY)
         {
 
         }
 
         /// 获取鼠标的X坐标位置
-        inline float GetPosX() const { return m_MouseX; }
+        inline float GetPosX() const { return m_nMouseX; }
         /// 获取鼠标的Y坐标位置
-        inline float GetPosY() const { return m_MouseY; }
+        inline float GetPosY() const { return m_nMouseY; }
 
         /// 重写输出函数，输出鼠标的坐标信息
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "Mouse Moved:" << m_MouseX << ", " << m_MouseY;
+            ss << "Mouse Moved:" << m_nMouseX << ", " << m_nMouseY;
             return ss.str();
         }
 
@@ -39,28 +39,28 @@ namespace SE {
     
     private:
         /* 鼠标的坐标位置 */
-        float m_MouseX, m_MouseY;
+        float m_nMouseX, m_nMouseY;
     };
 
     class SE_API CMouseScrolledEvent : public CEvent
     {
     public:
-        CMouseScrolledEvent(float xOffset, float yOffset)
-            : m_XOffset(xOffset), m_YOffset(yOffset)
+        CMouseScrolledEvent(float nXOffset, float nYOffset)
+            : m_nXOffset(nXOffset), m_nYOffset(nYOffset)
         {
 
         }
 
         /// 获取鼠标的X偏移
-        inline float GetXOffset() const { return m_XOffset; }
+        inline float GetXOffset() const { return m_nXOffset; }
         /// 获取鼠标的Y偏移
-        inline float GetYOffset() const { return m_YOffset; }
+        inline float GetYOffset() const { return m_nYOffset; }
 
         /// 重写输出函数，输出鼠标的偏移信息
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "Mouse Scrolled:" << m_XOffset << ", " << m_YOffset;
+            ss << "Mouse Scrolled:" << m_nXOffset << ", " << m_nYOffset;
             return ss.str();
     	}
 
@@ -72,34 +72,34 @@ namespace SE {
 
     private:
         /* 鼠标的坐标偏移 */
-        float m_XOffset, m_YOffset;
+        float m_nXOffset, m_nYOffset;
     };
 
     class SE_API CMouseButtonEvent : public CEvent
     {
     public:
         /// 获取鼠标按键值
-        inline int GetMouseButton() const { return m_Button; }
+        inline int GetMouseButton() const { return m_nButton; }
 
         /* 设置事件类型为：鼠标事件 | 输入事件 */
         SE_EVENT_CLASS_CATEGORY(SE_EC_MOUSE | SE_EC_INPUT)
     
     protected:
-        CMouseButtonEvent(int button)
-            : m_Button(button)
+        CMouseButtonEvent(int nButton)
+            : m_nButton(nButton)
         {
 
         }
 
         /* 鼠标按键值 */
-        int m_Button;
+        int m_nButton;
     };
     
     class SE_API CMouseButtonPressedEvent : public CMouseButtonEvent
     {
     public:
-        CMouseButtonPressedEvent(int button)
-            : CMouseButtonEvent(button)
+        CMouseButtonPressedEvent(int nButton)
+            : CMouseButtonEvent(nButton)
         {
 
         }
@@ -108,7 +108,7 @@ namespace SE {
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "Mouse Button Pressed:" << m_Button;
+            ss << "Mouse Button Pressed:" << m_nButton;
             return ss.str();
         }
 
@@ -119,8 +119,8 @@ namespace SE {
     class SE_API CMouseButtonReleasedEvent : public CMouseButtonEvent
     {
     public:
-        CMouseButtonReleasedEvent(int button)
-            : CMouseButtonEvent(button)
+        CMouseButtonReleasedEvent(int nButton)
+            : CMouseButtonEvent(nButton)
         {
 
         }
@@ -129,7 +129,7 @@ namespace SE {
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "S3D_ET_MBTN_RELEASED:" << m_Button;
+            ss << "S3D_ET_MBTN_RELEASED:" << m_nButton;
             return ss.str();
         }
 

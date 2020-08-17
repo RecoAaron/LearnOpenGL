@@ -4,7 +4,9 @@
 
 #include "SandEngine/Events/ApplicationEvent.h"
 
-namespace SandEngine {
+#include <GLFW/glfw3.h>
+
+namespace SE {
 
     CApplication::CApplication()
     {
@@ -18,11 +20,12 @@ namespace SandEngine {
 
     void CApplication::Run()
     {
-        SE::CWindowResizeEvent e(1280, 720);
-        SE_LOG_INFO(e);
+        m_pWindow = CWindow::Create(SWindowProps("Sand Engine Test"));
         while (true)
         {
-
+            glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
+            glClear(GL_COLOR_BUFFER_BIT);
+            m_pWindow->OnUpdate();
         }
     }
 }

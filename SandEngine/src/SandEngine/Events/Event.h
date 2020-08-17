@@ -79,7 +79,7 @@ namespace SE {
         }
 
         /* 事件是否处理完毕 */
-        bool m_Handled = false;
+        bool m_bHandled = false;
     };
 
     class CEventDispatcher
@@ -97,7 +97,7 @@ namespace SE {
         {
             if (m_Event.GetEventType() == T::GetStaticType())
             {
-                m_Event.m_Handled = func(static_cast<T&>(m_Event));
+                m_Event.m_bHandled = func(static_cast<T&>(m_Event));
                 return true;
             }
             return false;
