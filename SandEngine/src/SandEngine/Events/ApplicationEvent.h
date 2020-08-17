@@ -1,0 +1,90 @@
+#pragma once
+/*************************************************
+ * Copyright: @SandEngine
+ * Author: RecoAaron
+ * Date:2020-08-15
+ * Description: 应用程序事件处理类
+*************************************************/
+#include "SandEngine/Events/Event.h"
+
+namespace SE {
+
+    class SE_API CWindowResizeEvent : public CEvent
+    {
+    public:
+        CWindowResizeEvent(unsigned int width, unsigned int height)
+            : m_Width(width), m_Height(height)
+        {
+
+        }
+
+        /// 获取窗口的宽度
+        inline unsigned int GetWidth() const { return m_Width; }
+        /// 获取窗口的高度
+        inline unsigned int GetHeight() const { return m_Height; }
+
+        /// 重写输出函数，输出窗口的宽度和高度
+        std::string ToString() const override
+        {
+            std::stringstream ss;
+            ss << "Window Resized:" << m_Width << ", " << m_Height;
+            return ss.str();
+        }
+
+        /* 设置事件为：窗口缩放事件 */
+        SE_EVENT_CLASS_TYPE(SE_ET_WIN_RESIZE)
+
+        /* 设置事件类型为：应用事件 */
+        SE_EVENT_CLASS_CATEGORY(SE_EC_APPLICATION)
+
+    private:
+        /* 窗口的宽度和高度 */
+        unsigned int m_Width, m_Height;
+    };
+
+
+    class SE_API CWindowCloseEvent : public CEvent
+    {
+    public:
+        CWindowCloseEvent()
+        {
+
+        }
+
+        /* 设置事件为：窗口关闭事件 */
+        SE_EVENT_CLASS_TYPE(SE_ET_WIN_CLOSE)
+
+        /* 设置事件类型为：应用事件 */
+        SE_EVENT_CLASS_CATEGORY(SE_EC_APPLICATION)
+    };
+
+    class SE_API CApplicationTickEvent : public CEvent
+    {
+    public:
+        CApplicationTickEvent()
+        {
+
+        }
+
+        /* 设置事件为：帧事件 */
+        SE_EVENT_CLASS_TYPE(SE_ET_APP_TICK)
+
+        /* 设置事件类型为：应用事件 */
+        SE_EVENT_CLASS_CATEGORY(SE_EC_APPLICATION)
+    };
+
+    class SE_API CApplicationUpdateEvent : public CEvent
+    {
+    public:
+        CApplicationUpdateEvent()
+        {
+
+        }
+
+        /* 设置事件为：窗口关闭事件 */
+        SE_EVENT_CLASS_TYPE(SE_ET_APP_UPDATE)
+
+        /* 设置事件类型为：应用事件 */
+        SE_EVENT_CLASS_CATEGORY(SE_EC_APPLICATION)
+    };
+}

@@ -6,6 +6,9 @@
  * Description: 预编译头文件
 *************************************************/
 
+#include <iostream>
+#include <string>
+#include <sstream>
 #include <memory>
 #include <vector>
 

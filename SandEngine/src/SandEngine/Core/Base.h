@@ -8,7 +8,7 @@
 
 #include <memory>
 
-/// 平台预定义宏
+/* 平台预定义宏 */
 #ifdef _WIN32
     /* Windows x64/x86 */
     #ifdef _WIN64
@@ -28,6 +28,9 @@
 #else
     #error "SandEngine is only for Windows!"
 #endif
+
+/* 取位运算 */
+#define SE_BIT(x) (1 << x)
 
 namespace SE {
 
