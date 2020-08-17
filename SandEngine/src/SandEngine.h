@@ -6,6 +6,7 @@
  * Description: 包含 SandEngine 的各种API，供客户端使用。
 *************************************************/
 #include "SandEngine/Core/Application.h"
+#include "SandEngine/Core/Log.h"
 
 /* 引入应用程序启动点 */
 #include "SandEngine/Core/StartPoint.h"

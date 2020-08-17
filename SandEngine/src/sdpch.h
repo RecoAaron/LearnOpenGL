@@ -6,6 +6,11 @@
  * Description: 预编译头文件
 *************************************************/
 
+#include <memory>
+#include <vector>
+
+#include "SandEngine/Core/Log.h"
+
 #ifdef SE_PLATFORM_WINDOWS
     #include <Windows.h>
 #endif

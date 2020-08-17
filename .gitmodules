@@ -1,0 +1,3 @@
+[submodule "SandEngine/vendor/spdlog"]
+	path = SandEngine/vendor/spdlog
+	url = https://github.com/gabime/spdlog.git

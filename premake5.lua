@@ -34,6 +34,7 @@ project "SandEngine" -- 设置项目
 
     includedirs
     {
+        "%{prj.name}/vendor/spdlog/include",
         "%{prj.name}/src"
     }
 
@@ -81,7 +82,8 @@ project "Sandbox" -- 设置项目
 
     includedirs
     {
-        "SandEngine/src",
+        "SandEngine/vendor/spdlog/include",
+        "SandEngine/src"
     }
 
     links
