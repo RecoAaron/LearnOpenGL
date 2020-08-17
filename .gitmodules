@@ -1,3 +1,6 @@
 [submodule "SandEngine/vendor/spdlog"]
 	path = SandEngine/vendor/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "SandEngine/vendor/GLFW"]
+	path = SandEngine/vendor/GLFW
+	url = https://github.com/RecoAaron/glfw.git
