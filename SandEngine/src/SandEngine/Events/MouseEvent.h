@@ -129,7 +129,7 @@ namespace SE {
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "S3D_ET_MBTN_RELEASED:" << m_nButton;
+            ss << "Mouse Button Released:" << m_nButton;
             return ss.str();
         }
 

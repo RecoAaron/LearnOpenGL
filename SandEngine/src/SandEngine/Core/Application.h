@@ -7,6 +7,7 @@
 *************************************************/
 #include "SandEngine/Core/Base.h"
 #include "SandEngine/Core/Window.h"
+#include "SandEngine/Events/Event.h"
 
 namespace SE {
 
@@ -18,6 +19,9 @@ namespace SE {
 
         /// 应用程序开始运行
         void Run();
+
+        /// 处理应用程序事件
+        void OnEvent(CEvent& event);
 
     private:
         /* 窗口指针 */
