@@ -6,6 +6,8 @@
 #include "SandEngine/Events/KeyEvent.h"
 #include "SandEngine/Events/MouseEvent.h"
 
+#include <glad/glad.h>
+
 namespace SandEngine {
 
     static uint8_t s_nGLFWWindowCount = 0;
@@ -44,6 +46,8 @@ namespace SandEngine {
         ++s_nGLFWWindowCount;
 
         glfwMakeContextCurrent(m_pWindow);
+        int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+        SE_CORE_ASSERT(status, "Failed to initialize Glad!");
         glfwSetWindowUserPointer(m_pWindow, &m_Data);
         SetVSync(true);
 

@@ -12,7 +12,7 @@
 
 namespace SandEngine {
 
-    class SE_API CLog
+    class CLog
     {
     public:
         /// 初始化设置 Logger 的输出样式

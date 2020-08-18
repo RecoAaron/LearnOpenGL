@@ -10,7 +10,7 @@
 
 namespace SandEngine {
 
-    class SE_API CLayer
+    class CLayer
     {
     public:
         CLayer(const std::string& strName = "Layer");

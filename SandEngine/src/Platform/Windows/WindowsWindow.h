@@ -11,7 +11,7 @@
 
 namespace SandEngine {
 
-    class SE_API CWindowsWindow : public CWindow
+    class CWindowsWindow : public CWindow
     {
     public:
         CWindowsWindow(const SWindowProps& props);

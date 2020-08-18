@@ -9,7 +9,7 @@
 
 namespace SandEngine {
 
-    class SE_API CMouseMoveEvent : public CEvent
+    class CMouseMoveEvent : public CEvent
     {
     public:
         CMouseMoveEvent(float nPosX, float nPosY)
@@ -42,7 +42,7 @@ namespace SandEngine {
         float m_nMouseX, m_nMouseY;
     };
 
-    class SE_API CMouseScrolledEvent : public CEvent
+    class CMouseScrolledEvent : public CEvent
     {
     public:
         CMouseScrolledEvent(float nXOffset, float nYOffset)
@@ -75,7 +75,7 @@ namespace SandEngine {
         float m_nXOffset, m_nYOffset;
     };
 
-    class SE_API CMouseButtonEvent : public CEvent
+    class CMouseButtonEvent : public CEvent
     {
     public:
         /// 获取鼠标按键值
@@ -95,7 +95,7 @@ namespace SandEngine {
         int m_nButton;
     };
     
-    class SE_API CMouseButtonPressedEvent : public CMouseButtonEvent
+    class CMouseButtonPressedEvent : public CMouseButtonEvent
     {
     public:
         CMouseButtonPressedEvent(int nButton)
@@ -116,7 +116,7 @@ namespace SandEngine {
         SE_EVENT_CLASS_TYPE(SE_ET_MBTN_PRESSED)
     };
     
-    class SE_API CMouseButtonReleasedEvent : public CMouseButtonEvent
+    class CMouseButtonReleasedEvent : public CMouseButtonEvent
     {
     public:
         CMouseButtonReleasedEvent(int nButton)

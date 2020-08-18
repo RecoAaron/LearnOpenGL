@@ -9,7 +9,7 @@
 
 namespace SandEngine {
 
-    class SE_API CKeyEvent : public CEvent
+    class CKeyEvent : public CEvent
     {
     public:
         /// 获取按键的编码
@@ -29,7 +29,7 @@ namespace SandEngine {
         int m_nKeyCode;
     };
 
-    class SE_API CKeyPressedEvent : public CKeyEvent
+    class CKeyPressedEvent : public CKeyEvent
     {
     public:
         CKeyPressedEvent(int nKeycode, int nRepeatCount)
@@ -57,7 +57,7 @@ namespace SandEngine {
         int m_nRepeatCount;
     };
 
-    class SE_API CKeyReleasedEvent : public CKeyEvent
+    class CKeyReleasedEvent : public CKeyEvent
     {
     public:
         CKeyReleasedEvent(int nKeycode)

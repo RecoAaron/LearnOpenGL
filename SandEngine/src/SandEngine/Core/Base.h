@@ -14,13 +14,6 @@
     #ifdef _WIN64
         /* Windows x64 */
         #define SE_PLATFORM_WINDOWS
-        #ifdef SE_BUILD_DLL
-            /* API dll export */
-            #define SE_API __declspec(dllexport)
-        #else
-            /* API dll import */
-            #define SE_API __declspec(dllimport)
-        #endif
     #else
         /* Windows x86 */
         #error "x86 builds are not supported!"

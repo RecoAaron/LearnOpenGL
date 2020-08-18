@@ -10,7 +10,7 @@
 
 namespace SandEngine {
 
-    class SE_API CLayerStack
+    class CLayerStack
     {
     public:
         CLayerStack();

@@ -13,7 +13,7 @@
 
 namespace SandEngine {
 
-    class SE_API CApplication
+    class CApplication
     {
     public:
         CApplication();

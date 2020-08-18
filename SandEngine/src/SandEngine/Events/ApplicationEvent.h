@@ -9,7 +9,7 @@
 
 namespace SandEngine {
 
-    class SE_API CWindowResizeEvent : public CEvent
+    class CWindowResizeEvent : public CEvent
     {
     public:
         CWindowResizeEvent(unsigned int nWidth, unsigned int nHeight)
@@ -43,7 +43,7 @@ namespace SandEngine {
     };
 
 
-    class SE_API CWindowCloseEvent : public CEvent
+    class CWindowCloseEvent : public CEvent
     {
     public:
         CWindowCloseEvent()
@@ -58,7 +58,7 @@ namespace SandEngine {
         SE_EVENT_CLASS_CATEGORY(SE_EC_APPLICATION)
     };
 
-    class SE_API CApplicationTickEvent : public CEvent
+    class CApplicationTickEvent : public CEvent
     {
     public:
         CApplicationTickEvent()
@@ -73,7 +73,7 @@ namespace SandEngine {
         SE_EVENT_CLASS_CATEGORY(SE_EC_APPLICATION)
     };
 
-    class SE_API CApplicationUpdateEvent : public CEvent
+    class CApplicationUpdateEvent : public CEvent
     {
     public:
         CApplicationUpdateEvent()

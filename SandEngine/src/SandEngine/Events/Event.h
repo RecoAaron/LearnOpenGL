@@ -55,7 +55,7 @@ namespace SandEngine {
 #define SE_EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
 
-    class SE_API CEvent
+    class CEvent
     {
     public:
         virtual ~CEvent() = default;

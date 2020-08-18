@@ -27,7 +27,7 @@ namespace SandEngine {
         }
     };
 
-    class SE_API CWindow
+	class CWindow
     {
     public:
         /* 窗口事件回调函数类型 void fun(CEvent& event) */
