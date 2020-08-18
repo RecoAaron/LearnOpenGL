@@ -62,7 +62,7 @@
 /* 事件绑定宏 */
 #define SE_BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }
 
-namespace SE {
+namespace SandEngine {
 
     template<typename T>
     using Scope = std::unique_ptr<T>;

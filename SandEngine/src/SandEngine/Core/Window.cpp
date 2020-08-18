@@ -6,7 +6,7 @@
     #include "Platform/Windows/WindowsWindow.h"
 #endif
 
-namespace SE {
+namespace SandEngine {
 
     Scope<CWindow> CWindow::Create(const SWindowProps& props /* = SWindowProps() */)
     {

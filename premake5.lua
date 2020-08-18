@@ -50,7 +50,7 @@ project "SandEngine" -- 设置项目
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On" -- 链接动态库
+        staticruntime "Off" -- 链接动态库
         systemversion "latest"
 
         defines
@@ -93,7 +93,8 @@ project "Sandbox" -- 设置项目
     includedirs
     {
         "SandEngine/vendor/spdlog/include",
-        "SandEngine/src"
+        "SandEngine/src",
+        "SandEngine/vendor"
     }
 
     links
@@ -103,7 +104,7 @@ project "Sandbox" -- 设置项目
         
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On" -- 链接动态库
+        staticruntime "Off" -- 链接动态库
         systemversion "latest"
         
         defines

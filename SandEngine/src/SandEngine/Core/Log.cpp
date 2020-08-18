@@ -5,7 +5,7 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/sinks/basic_file_sink.h>
 
-namespace SE {
+namespace SandEngine {
 
     /* static 成员对象在类外部进行初始化*/
     Ref<spdlog::logger> CLog::s_pLoggerCore;

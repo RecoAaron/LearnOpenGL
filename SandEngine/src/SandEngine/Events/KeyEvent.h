@@ -7,7 +7,7 @@
 *************************************************/
 #include "SandEngine/Events/Event.h"
 
-namespace SE {
+namespace SandEngine {
 
     class SE_API CKeyEvent : public CEvent
     {

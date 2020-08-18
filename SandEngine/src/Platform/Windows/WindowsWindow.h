@@ -9,7 +9,7 @@
 
 #include <GLFW/glfw3.h>
 
-namespace SE {
+namespace SandEngine {
 
     class SE_API CWindowsWindow : public CWindow
     {

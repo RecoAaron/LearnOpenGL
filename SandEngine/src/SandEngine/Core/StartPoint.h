@@ -9,16 +9,16 @@
 #ifdef SE_PLATFORM_WINDOWS /* Sand Engine 定义在 Windows 上 */
 
 /* 由用户自定义创建 Application 的方式，在 main 中自动创建 */
-extern SE::CApplication* SE::CreateApplication();
+extern SandEngine::CApplication* SandEngine::CreateApplication();
 
 int main(int argc, char** argv)
 {
-    SE::CLog::Init();
+    SandEngine::CLog::Init();
     SE_LOG_TRACE_CORE("the logger core is logging!");
     int id = 123456;
     SE_LOG_INFO("application logging id : {0}", id);
 
-    auto app = SE::CreateApplication();
+    auto app = SandEngine::CreateApplication();
     app->Run();
     delete app;
     return 0;

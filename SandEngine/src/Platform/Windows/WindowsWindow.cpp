@@ -6,7 +6,7 @@
 #include "SandEngine/Events/KeyEvent.h"
 #include "SandEngine/Events/MouseEvent.h"
 
-namespace SE {
+namespace SandEngine {
 
     static uint8_t s_nGLFWWindowCount = 0;
 

@@ -10,7 +10,7 @@
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
 
-namespace SE {
+namespace SandEngine {
 
     class SE_API CLog
     {
@@ -32,19 +32,19 @@ namespace SE {
 }
 
 /* 核心 Logger 输出 trace 信息 */
-#define SE_LOG_TRACE_CORE(...)  ::SE::CLog::GetCoreLogger()->trace(__VA_ARGS__)
+#define SE_LOG_TRACE_CORE(...)  ::SandEngine::CLog::GetCoreLogger()->trace(__VA_ARGS__)
 /* 核心 Logger 输出 info 信息 */
-#define SE_LOG_INFO_CORE(...)   ::SE::CLog::GetCoreLogger()->info(__VA_ARGS__)
+#define SE_LOG_INFO_CORE(...)   ::SandEngine::CLog::GetCoreLogger()->info(__VA_ARGS__)
 /* 核心 Logger 输出 warn 信息 */
-#define SE_LOG_WARN_CORE(...)   ::SE::CLog::GetCoreLogger()->warn(__VA_ARGS__)
+#define SE_LOG_WARN_CORE(...)   ::SandEngine::CLog::GetCoreLogger()->warn(__VA_ARGS__)
 /* 核心 Logger 输出 error 信息 */
-#define SE_LOG_ERROR_CORE(...)  ::SE::CLog::GetCoreLogger()->error(__VA_ARGS__)
+#define SE_LOG_ERROR_CORE(...)  ::SandEngine::CLog::GetCoreLogger()->error(__VA_ARGS__)
 
 /* 应用程序 Logger 输出 trace 信息 */
-#define SE_LOG_TRACE(...)       ::SE::CLog::GetApplicationLogger()->trace(__VA_ARGS__)
+#define SE_LOG_TRACE(...)       ::SandEngine::CLog::GetApplicationLogger()->trace(__VA_ARGS__)
 /* 应用程序 Logger 输出 info 信息 */
-#define SE_LOG_INFO(...)        ::SE::CLog::GetApplicationLogger()->info(__VA_ARGS__)
+#define SE_LOG_INFO(...)        ::SandEngine::CLog::GetApplicationLogger()->info(__VA_ARGS__)
 /* 应用程序 Logger 输出 warn 信息 */
-#define SE_LOG_WARN(...)        ::SE::CLog::GetApplicationLogger()->warn(__VA_ARGS__)
+#define SE_LOG_WARN(...)        ::SandEngine::CLog::GetApplicationLogger()->warn(__VA_ARGS__)
 /* 应用程序 Logger 输出 error 信息 */
-#define SE_LOG_ERROR(...)       ::SE::CLog::GetApplicationLogger()->error(__VA_ARGS__)
+#define SE_LOG_ERROR(...)       ::SandEngine::CLog::GetApplicationLogger()->error(__VA_ARGS__)

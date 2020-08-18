@@ -10,7 +10,7 @@
 #include "SandEngine/Core/Base.h"
 #include "SandEngine/Events/Event.h"
 
-namespace SE {
+namespace SandEngine {
 
     struct SWindowProps
     {

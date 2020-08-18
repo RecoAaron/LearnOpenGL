@@ -7,6 +7,7 @@
 *************************************************/
 #include "SandEngine/Core/Application.h"
 #include "SandEngine/Core/Log.h"
+#include "SandEngine/Core/Layer.h"
 
 /* 引入应用程序启动点 */
 #include "SandEngine/Core/StartPoint.h"

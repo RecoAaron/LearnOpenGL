@@ -9,7 +9,7 @@
 
 #include "SandEngine/Core/Base.h"
 
-namespace SE {
+namespace SandEngine {
 
     enum class EEventType
     {
