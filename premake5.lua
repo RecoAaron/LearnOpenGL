@@ -21,10 +21,12 @@ startproject "Sandbox"
 IncludeDir = {}
 IncludeDir["GLFW"] = "SandEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "SandEngine/vendor/Glad/include"
+IncludeDir["ImGui"] = "SandEngine/vendor/imgui"
 
 group "Dependencies"
     include "SandEngine/vendor/GLFW"
     include "SandEngine/vendor/Glad"
+    include "SandEngine/vendor/imgui"
 
 group ""
 
@@ -58,13 +60,15 @@ project "SandEngine" -- 设置项目
         "%{prj.name}/vendor/spdlog/include",
         "%{prj.name}/src",
         "%{IncludeDir.GLFW}",
-        "%{IncludeDir.Glad}"
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}"
     }
 
     links
     {
         "GLFW",
         "Glad",
+        "ImGui",
         "opengl32.lib"
     }
 
@@ -73,8 +77,7 @@ project "SandEngine" -- 设置项目
 
         defines
         {
-            "SE_PLATFORM_WINDOWS",
-            "SE_BUILD_DLL",
+
         }
 
         filter "configurations:Debug" -- 只定义在 Debug 模式下

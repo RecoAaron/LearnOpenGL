@@ -33,6 +33,9 @@ namespace SandEngine {
         /// 是否启用了垂直同步
         bool IsVSync() const override;
 
+        /// 获取原生的窗口
+        virtual void* GetNativeWindow() const override { return m_pWindow; }
+
     private:
         /// 初始化窗口
         virtual void Init(const SWindowProps& props);

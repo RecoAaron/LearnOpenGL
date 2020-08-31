@@ -51,6 +51,9 @@ namespace SandEngine {
         /// 是否启用了垂直同步
         virtual bool IsVSync() const = 0;
 
+        /// 获取原生的窗口
+        virtual void* GetNativeWindow() const = 0;
+
         /// 静态构造窗口函数，Scope = unique_ptr 防止内存泄漏
         static Scope<CWindow> Create(const SWindowProps& props = SWindowProps());
     };

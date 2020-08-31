@@ -32,6 +32,10 @@ namespace SandEngine {
         std::vector<CLayer*>::iterator begin() { return m_vecLayers.begin(); }
         /// 返回栈的最顶层
         std::vector<CLayer*>::iterator end() { return m_vecLayers.end(); }
+        /// 返回栈的最顶层
+        std::vector<CLayer*>::reverse_iterator rbegin() { return m_vecLayers.rbegin(); }
+        /// 返回栈的最底层
+        std::vector<CLayer*>::reverse_iterator rend() { return m_vecLayers.rend(); }
 
     private:
         /* 层级存储的栈 */

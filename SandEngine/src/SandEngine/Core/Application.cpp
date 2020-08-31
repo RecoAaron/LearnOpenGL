@@ -6,12 +6,22 @@
 
 #include <glad/glad.h>
 
+#include "Input.h"
+#include "InputCode.h"
+
 namespace SandEngine {
 
-    CApplication::CApplication()
+    CApplication* CApplication::s_pInstance = nullptr;
+
+    CApplication::CApplication(const std::string& name /* = "Sand Engine" */)
     {
-        m_pWindow = CWindow::Create(SWindowProps("Sand Engine Test"));
+        SE_CORE_ASSERT(!s_pInstance, "Application already exists!");
+        s_pInstance = this;
+        m_pWindow = CWindow::Create(SWindowProps(name));
         m_pWindow->SetEventCallback(SE_BIND_EVENT_FN(OnEvent));
+
+        m_pImGuiLayer = new CImGuiLayer();
+        PushOverlay(m_pImGuiLayer);
     }
 
     CApplication::~CApplication()
@@ -21,13 +31,13 @@ namespace SandEngine {
 
     void CApplication::PushLayer(CLayer* pLayer)
     {
-        m_layerStack.PushLayer(pLayer);
+        m_LayerStack.PushLayer(pLayer);
         pLayer->OnAttach();
     }
 
     void CApplication::PushOverlay(CLayer* pOverlay)
     {
-        m_layerStack.PushOverlay(pOverlay);
+        m_LayerStack.PushOverlay(pOverlay);
         pOverlay->OnAttach();
     }
 
@@ -35,11 +45,20 @@ namespace SandEngine {
     {
         while (m_bRunning)
         {
-            for (CLayer* pLayer : m_layerStack)
-                pLayer->OnUpdate();
-
             glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT);
+
+            for (CLayer* pLayer : m_LayerStack)
+                pLayer->OnUpdate();
+           
+            // 所有层级进行 ImGui 绘制操作
+            m_pImGuiLayer->Begin();
+            {
+                for (CLayer* layer : m_LayerStack)
+                    layer->OnImGuiRender();
+            }
+            m_pImGuiLayer->End();
+
             m_pWindow->OnUpdate();
         }
     }
@@ -51,11 +70,11 @@ namespace SandEngine {
 
         //SE_LOG_TRACE("{0}", event);
 
-        for (auto it = m_layerStack.end(); it != m_layerStack.begin(); )
+        for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
         {
-            (*--it)->OnEvent(event);
             if (event.m_bHandled)
                 break;
+            (*it)->OnEvent(event);
         }
     }
 

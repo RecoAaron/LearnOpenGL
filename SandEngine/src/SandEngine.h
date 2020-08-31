@@ -9,5 +9,7 @@
 #include "SandEngine/Core/Log.h"
 #include "SandEngine/Core/Layer.h"
 
+#include "SandEngine/ImGui/ImGuiLayer.h"
+
 /* 引入应用程序启动点 */
 #include "SandEngine/Core/StartPoint.h"

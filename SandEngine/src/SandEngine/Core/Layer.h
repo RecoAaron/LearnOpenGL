@@ -25,6 +25,9 @@ namespace SandEngine {
         /// 层级更新时
         virtual void OnUpdate() {}
 
+        /// 层级 ImGui 更新时
+        virtual void OnImGuiRender() {}
+
         /// 层级事件处理
         virtual void OnEvent(CEvent& event) {}
 
