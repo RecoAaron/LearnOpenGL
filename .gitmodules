@@ -7,3 +7,6 @@
 [submodule "SandEngine/vendor/imgui"]
 	path = SandEngine/vendor/imgui
 	url = https://github.com/RecoAaron/imgui.git
+[submodule "SandEngine/vendor/glm"]
+	path = SandEngine/vendor/glm
+	url = https://github.com/g-truc/glm.git
