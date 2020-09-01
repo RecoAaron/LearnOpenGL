@@ -10,7 +10,7 @@ public:
     ExampleLayer()
         : CLayer("Example")
     {
-
+        
     }
 
 private:
@@ -26,9 +26,8 @@ private:
 
     void OnImGuiRender() override
     {
-        ImGui::Begin("Settings");
-        ImGui::Text("Square Color");
-        ImGui::End();
+        static bool bShow = true;
+        ImGui::ShowDemoWindow(&bShow);
     }
 };
 
