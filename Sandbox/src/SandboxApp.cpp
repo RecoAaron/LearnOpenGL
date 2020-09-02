@@ -1,4 +1,4 @@
-#include <SandEngine.h>
+ï»¿#include <SandEngine.h>
 #include <SandEngine/Core/StartPoint.h>
 
 #include "ExampleLayer.h"
@@ -17,7 +17,7 @@ public:
     }
 };
 
-/// ×Ô¶¨Òå´´½¨Ó¦ÓÃ³ÌĞòµÄ·½·¨
+/// è‡ªå®šä¹‰åˆ›å»ºåº”ç”¨ç¨‹åºçš„æ–¹æ³•
 SandEngine::CApplication* SandEngine::CreateApplication()
 {
     return new Sandbox();

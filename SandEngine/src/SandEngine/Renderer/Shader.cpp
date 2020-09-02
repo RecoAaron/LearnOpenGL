@@ -31,4 +31,40 @@ namespace SandEngine {
         return nullptr;
     }
 
+    void CShaderLibrary::AddShader(const std::string& strName, const Ref<CShader>& pShader)
+    {
+        SE_CORE_ASSERT(!ExistsShader(strName), "Shader already exists!");
+        m_vecShaders[strName] = pShader;
+    }
+
+    void CShaderLibrary::AddShader(const Ref<CShader>& pShader)
+    {
+        auto& strName = pShader->GetName();
+        AddShader(strName, pShader);
+    }
+
+    Ref<CShader> CShaderLibrary::LoadShader(const std::string& strFilepath)
+    {
+        auto pShader = CShader::Create(strFilepath);
+        AddShader(pShader);
+        return pShader;
+    }
+
+    Ref<CShader> CShaderLibrary::LoadShader(const std::string& strName, const std::string& strFilepath)
+    {
+        auto pShader = CShader::Create(strFilepath);
+        AddShader(strName, pShader);
+        return pShader;
+    }
+
+    Ref<CShader> CShaderLibrary::GetShader(const std::string& strName)
+    {
+        SE_CORE_ASSERT(ExistsShader(strName), "Shader not found!");
+        return m_vecShaders[strName];
+    }
+
+    bool CShaderLibrary::ExistsShader(const std::string& strName) const
+    {
+        return m_vecShaders.find(strName) != m_vecShaders.end();
+    }
 }

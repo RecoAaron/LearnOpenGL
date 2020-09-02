@@ -1,40 +1,37 @@
-#include "sdpch.h"
-#include "WindowsInput.h"
+﻿#include "sdpch.h"
 
+#include "SandEngine/Core/Input.h"
 #include "SandEngine/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 
 namespace SandEngine {
 
-    CInput* CInput::s_pInstance = new CWindowsInput();
-
-    bool CWindowsInput::IsKeyPressedImpl(int keycode)
+    bool CInput::IsKeyPressed(KeyCode keycode)
     {
-        auto pWindow = static_cast<GLFWwindow*>(CApplication::GetInstance().GetWindow().GetNativeWindow());
-        auto state = glfwGetKey(pWindow, keycode);
+        auto* pWindow = static_cast<GLFWwindow*>(CApplication::GetInstance().GetWindow().GetNativeWindow());
+        auto state = glfwGetKey(pWindow, static_cast<int32_t>(keycode));
         return state == GLFW_PRESS || state == GLFW_REPEAT;
     }
 
-    bool CWindowsInput::IsMouseButtonPressedImpl(int button)
+    bool CInput::IsMouseButtonPressed(KeyCode button)
     {
-        auto pWindow = static_cast<GLFWwindow*>(CApplication::GetInstance().GetWindow().GetNativeWindow());
-        auto state = glfwGetMouseButton(pWindow, button);
+        auto* pWindow = static_cast<GLFWwindow*>(CApplication::GetInstance().GetWindow().GetNativeWindow());
+        auto state = glfwGetMouseButton(pWindow, static_cast<int32_t>(button));
         return state == GLFW_PRESS;
     }
 
-    float CWindowsInput::GetMouseXImpl()
+    float CInput::GetMouseX()
     {
-        auto [x, y] = GetMousePositionImpl();
-        return x;
+        return GetMousePosition().x;
     }
 
-    float CWindowsInput::GetMouseYImpl()
+    float CInput::GetMouseY()
     {
-        auto [x, y] = GetMousePositionImpl();
-        return y;
+        return GetMousePosition().y;
     }
-    std::pair<float, float> CWindowsInput::GetMousePositionImpl()
+
+    glm::vec2 CInput::GetMousePosition()
     {
         auto pWindow = static_cast<GLFWwindow*>(CApplication::GetInstance().GetWindow().GetNativeWindow());
         double nPosX, nPosY;

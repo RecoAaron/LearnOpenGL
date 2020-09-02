@@ -35,10 +35,15 @@ namespace SandEngine {
 
         glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, NULL, GL_FALSE);
     #endif
-        //glEnable(GL_BLEND);
-        //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        //glEnable(GL_DEPTH_TEST);
+        glEnable(GL_DEPTH_TEST);
+    }
+
+    void COpenGLRendererAPI::SetViewport(uint32_t x, uint32_t y, uint32_t nWidth, uint32_t nHeight)
+    {
+        glViewport(x, y, nWidth, nHeight);
     }
 
     void COpenGLRendererAPI::SetClearColor(const glm::vec4& vec4Color)
@@ -48,7 +53,7 @@ namespace SandEngine {
 
     void COpenGLRendererAPI::Clear()
     {
-        glClear(GL_COLOR_BUFFER_BIT);// | GL_DEPTH_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
     void COpenGLRendererAPI::DrawIndexed(const Ref<CVertexArray>& pVertexArray, uint32_t nIndexCount)

@@ -1,6 +1,7 @@
 ﻿#include "ExampleLayer.h"
 
 ExampleLayer::ExampleLayer()
+    : CLayer("Example Layer"), m_CameraController(1280.0f / 720.0f)
 {
     m_VertexArray = SandEngine::CVertexArray::Create();
 
@@ -28,6 +29,9 @@ ExampleLayer::ExampleLayer()
             layout(location = 0) in vec3 a_Position;
             layout(location = 1) in vec4 a_Color;
 
+            uniform mat4 u_ViewProjection;
+            uniform mat4 u_Transform;
+
             out vec3 v_Position;
             out vec4 v_Color;
 
@@ -35,7 +39,7 @@ ExampleLayer::ExampleLayer()
             {
                 v_Position = a_Position;
                 v_Color = a_Color;
-                gl_Position = vec4(a_Position, 1.0);	
+                gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
             }
         )";
 
@@ -49,7 +53,7 @@ ExampleLayer::ExampleLayer()
 
             void main()
             {
-                color = v_Color;
+                color = vec4(v_Position * 0.5 + 0.5, 1.0);
             }
         )";
 
@@ -66,14 +70,18 @@ void ExampleLayer::OnDetach()
 
 }
 
-void ExampleLayer::OnUpdate()
+void ExampleLayer::OnUpdate(SandEngine::CTimestep& time)
 {
+    m_CameraController.OnUpdate(time);
+
     SandEngine::CRenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
     SandEngine::CRenderCommand::Clear();
 
-    m_VertexArray->Bind();
-    m_Shader->Bind();
-    SandEngine::CRenderCommand::DrawIndexed(m_VertexArray);
+    SandEngine::CRenderer::BeginScene(m_CameraController.GetCamera());
+
+    SandEngine::CRenderer::Submit(m_Shader, m_VertexArray);
+
+    SandEngine::CRenderer::EndScene();
 }
 
 void ExampleLayer::OnImGuiRender()
@@ -81,7 +89,7 @@ void ExampleLayer::OnImGuiRender()
 
 }
 
-void ExampleLayer::OnEvent(SandEngine::CEvent& e)
+void ExampleLayer::OnEvent(SandEngine::CEvent& event)
 {
-
+    m_CameraController.OnEvent(event);
 }

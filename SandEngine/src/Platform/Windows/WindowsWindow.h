@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 /*************************************************
  * Copyright: @SandEngine
  * Author: RecoAaron
  * Date:2020-08-15
- * Description: Windows Æ½Ì¨´°¿ÚÊµÏÖ
+ * Description: Windows å¹³å°çª—å£å®ç°
 *************************************************/
 #include "SandEngine/Core/Window.h"
 #include "SandEngine/Renderer/GraphicsContext.h"
@@ -18,54 +18,57 @@ namespace SandEngine {
         CWindowsWindow(const SWindowProps& props);
         virtual ~CWindowsWindow();
 
-        /// ´°¿Ú½øĞĞ¸üĞÂ
+        /// çª—å£è¿›è¡Œæ›´æ–°
         void OnUpdate() override;
 
-        /// »ñÈ¡´°¿ÚµÄ¿í¶È
+        /// è·å–çª—å£çš„å®½åº¦
         uint32_t GetWidth() const override { return m_Data.m_nWidth; }
-        /// »ñÈ¡´°¿ÚµÄ¸ß¶È
+        /// è·å–çª—å£çš„é«˜åº¦
         uint32_t GetHeight() const override { return m_Data.m_nHeight; }
 
-        /// ÉèÖÃ´°¿ÚÊÂ¼şµÄ»Øµ÷º¯Êı
+        /// è®¾ç½®çª—å£äº‹ä»¶çš„å›è°ƒå‡½æ•°
         void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
 
-        /// ÉèÖÃÊÇ·ñÆôÓÃ´¹Ö±Í¬²½
+        /// è·å–çª—å£çš„æ—¶é—´
+        virtual float GetWindowTime() override;
+
+        /// è®¾ç½®æ˜¯å¦å¯ç”¨å‚ç›´åŒæ­¥
         void SetVSync(bool bEnable) override;
-        /// ÊÇ·ñÆôÓÃÁË´¹Ö±Í¬²½
+        /// æ˜¯å¦å¯ç”¨äº†å‚ç›´åŒæ­¥
         bool IsVSync() const override;
 
-        /// »ñÈ¡Ô­ÉúµÄ´°¿Ú
+        /// è·å–åŸç”Ÿçš„çª—å£
         virtual void* GetNativeWindow() const override { return m_pWindow; }
 
     private:
-        /// ³õÊ¼»¯´°¿Ú
+        /// åˆå§‹åŒ–çª—å£
         virtual void Init(const SWindowProps& props);
 
-        /// ½áÊø´°¿Ú½ø³Ì
+        /// ç»“æŸçª—å£è¿›ç¨‹
         virtual void Shutdown();
 
         struct SWindowData
         {
-            /* ´°¿ÚµÄ±êÌâ */
+            /* çª—å£çš„æ ‡é¢˜ */
             std::string m_strTitle;
 
-            /* ´°¿ÚµÄ¿í¶ÈºÍ¸ß¶È */
+            /* çª—å£çš„å®½åº¦å’Œé«˜åº¦ */
             uint32_t m_nWidth, m_nHeight;
 
-            /* ´°¿ÚÊÇ·ñ´¹Ö±Í¬²½ */
+            /* çª—å£æ˜¯å¦å‚ç›´åŒæ­¥ */
             bool m_bVSync;
 
-            /* ´°¿ÚµÄ»Øµ÷º¯Êı */
+            /* çª—å£çš„å›è°ƒå‡½æ•° */
             EventCallbackFn EventCallback;
         };
 
-        /* ´°¿ÚÊı¾İ */
+        /* çª—å£æ•°æ® */
         SWindowData m_Data;
 
-        /* ´°¿ÚµÄÖ¸Õë */
+        /* çª—å£çš„æŒ‡é’ˆ */
         GLFWwindow* m_pWindow;
 
-        /* ´°¿ÚµÄÍ¼ĞÎ»æÖÆÉÏÏÂÎÄ */
+        /* çª—å£çš„å›¾å½¢ç»˜åˆ¶ä¸Šä¸‹æ–‡ */
         Scope<CGraphicsContext> m_pContext;
     };
 }

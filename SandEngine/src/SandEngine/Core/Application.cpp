@@ -46,17 +46,27 @@ namespace SandEngine {
     {
         while (m_bRunning)
         {
-            for (CLayer* pLayer : m_LayerStack)
-                pLayer->OnUpdate();
-           
-            // 所有层级进行 ImGui 绘制操作
-            m_pImGuiLayer->Begin();
-            {
-                for (CLayer* layer : m_LayerStack)
-                    layer->OnImGuiRender();
-            }
-            m_pImGuiLayer->End();
+            float nTime = m_pWindow->GetWindowTime();
+            CTimestep timestep = nTime - m_nLastFrameTime;
+            m_nLastFrameTime = nTime;
 
+            if (!m_bMinimized)
+            {
+                // 所有层级进行更新
+                {
+                    for (CLayer* pLayer : m_LayerStack)
+                        pLayer->OnUpdate(timestep);
+                }
+
+                // 所有层级进行 ImGui 绘制操作
+                m_pImGuiLayer->Begin();
+                {
+                    for (CLayer* layer : m_LayerStack)
+                        layer->OnImGuiRender();
+                }
+                m_pImGuiLayer->End();
+            }
+            
             m_pWindow->OnUpdate();
         }
     }
@@ -65,8 +75,7 @@ namespace SandEngine {
     {
         CEventDispatcher dispatcher(event);
         dispatcher.Dispatch<CWindowCloseEvent>(SE_BIND_EVENT_FN(CApplication::OnWindowClose));
-
-        //SE_LOG_TRACE("{0}", event);
+        dispatcher.Dispatch<CWindowResizedEvent>(SE_BIND_EVENT_FN(CApplication::OnWindowResize));
 
         for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
         {
@@ -80,5 +89,18 @@ namespace SandEngine {
     {
         m_bRunning = false;
         return true;
+    }
+
+    bool CApplication::OnWindowResize(CWindowResizedEvent& event)
+    {
+        if (event.GetWidth() == 0 || event.GetHeight() == 0)
+        {
+            m_bMinimized = true;
+            return false;
+        }
+
+        m_bMinimized = false;
+        CRenderer::OnWindowResize(event.GetWidth(), event.GetHeight());
+        return false;
     }
 }

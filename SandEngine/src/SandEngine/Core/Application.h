@@ -35,6 +35,9 @@ namespace SandEngine {
         /// 应用程序关闭事件
         bool OnWindowClose(CWindowCloseEvent& event);
 
+        /// 应用程序缩放事件
+        bool OnWindowResize(CWindowResizedEvent& event);
+
         /// 获取应用程序单例对象
         static CApplication& GetInstance() { return *s_pInstance; }
 
@@ -50,6 +53,12 @@ namespace SandEngine {
 
         /* 应用程序运行标志 */
         bool m_bRunning = true;
+
+        /* 应用程序是否最小化 */
+        bool m_bMinimized = false;
+
+        /* 应用程序上一帧时间 */
+        float m_nLastFrameTime = 0.0f;
 
     private:
         /* 应用程序单例指针 */

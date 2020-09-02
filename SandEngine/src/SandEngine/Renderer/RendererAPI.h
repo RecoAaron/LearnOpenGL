@@ -25,6 +25,9 @@ namespace SandEngine {
         /// 初始化 API
         virtual void Init() = 0;
 
+        /// 设置视锥体
+        virtual void SetViewport(uint32_t x, uint32_t y, uint32_t nWidth, uint32_t nHeight) = 0;
+
         /// 设置清空缓冲区的颜色
         virtual void SetClearColor(const glm::vec4 & vec4Color) = 0;
 

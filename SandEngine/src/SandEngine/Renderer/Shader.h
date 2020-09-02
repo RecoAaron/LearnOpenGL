@@ -47,4 +47,26 @@ namespace SandEngine {
         /// 创建着色器，顶点着色器文件和片段着色器文件
         static Ref<CShader> Create(const std::string& strName, const std::string& strVertexSrc, const std::string& strFragmentSrc);
     };
+
+    class CShaderLibrary
+    {
+    public:
+        /// 添加着色器到库中
+        void AddShader(const std::string& strName, const Ref<CShader>& pShader);
+        void AddShader(const Ref<CShader>& pShader);
+
+        /// 加载着色器
+        Ref<CShader> LoadShader(const std::string& strFilepath);
+        Ref<CShader> LoadShader(const std::string& strName, const std::string& strFilepath);
+
+        /// 获取库中的着色器
+        Ref<CShader> GetShader(const std::string& strName);
+
+        /// 库中是否存在该着色器
+        bool ExistsShader(const std::string& strName) const;
+
+    private:
+        /// 存储着色器的库  名字-着色器指针
+        std::unordered_map<std::string, Ref<CShader>> m_vecShaders;
+    };
 }

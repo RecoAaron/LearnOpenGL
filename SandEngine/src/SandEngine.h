@@ -9,6 +9,10 @@
 #include "SandEngine/Core/Log.h"
 #include "SandEngine/Core/Layer.h"
 
+#include "SandEngine/Core/Timestep.h"
+
+#include "SandEngine/Renderer/OrthographicCameraController.h"
+
 #include "SandEngine/ImGui/ImGuiLayer.h"
 
 /* 图形渲染引擎 */
@@ -18,3 +22,5 @@
 #include "SandEngine/Renderer/Buffer.h"
 #include "SandEngine/Renderer/Shader.h"
 #include "SandEngine/Renderer/VertexArray.h"
+
+#include "SandEngine/Renderer/OrthographicCamera.h"

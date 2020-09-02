@@ -43,6 +43,9 @@ namespace SandEngine {
         /// 设置窗口事件的回调函数
         virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 
+        /// 获取窗口的时间
+        virtual float GetWindowTime() = 0;
+
         /// 设置是否启用垂直同步
         virtual void SetVSync(bool bEnable) = 0;
         /// 是否启用了垂直同步

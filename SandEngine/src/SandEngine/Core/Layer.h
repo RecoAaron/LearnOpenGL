@@ -6,6 +6,7 @@
  * Description: Layer 层级抽象类。
 *************************************************/
 #include "SandEngine/Events/Event.h"
+#include "SandEngine/Core/Timestep.h"
 
 namespace SandEngine {
 
@@ -22,7 +23,7 @@ namespace SandEngine {
         virtual void OnDetach() {}
 
         /// 层级更新时
-        virtual void OnUpdate() {}
+        virtual void OnUpdate(CTimestep& ts) {}
 
         /// 层级 ImGui 更新时
         virtual void OnImGuiRender() {}

@@ -1,4 +1,4 @@
-#include "sdpch.h"
+ï»¿#include "sdpch.h"
 
 #include "WindowsWindow.h"
 
@@ -58,7 +58,7 @@ namespace SandEngine {
         glfwSetWindowUserPointer(m_pWindow, &m_Data);
         SetVSync(true);
 
-        // °ó¶¨ GLFW »Øµ÷º¯Êý´¦ÀíÊÂ¼þ
+        // ç»‘å®š GLFW å›žè°ƒå‡½æ•°å¤„ç†äº‹ä»¶
         /* Window Resize Event */
         glfwSetWindowSizeCallback(m_pWindow, [](GLFWwindow* pWindow, int nWidth, int nHeight)
             {
@@ -66,7 +66,7 @@ namespace SandEngine {
                 data.m_nWidth = nWidth;
                 data.m_nHeight = nHeight;
 
-                data.EventCallback(CWindowResizeEvent(nWidth, nHeight));
+                data.EventCallback(CWindowResizedEvent(nWidth, nHeight));
             });
         /* Window Close Event */
         glfwSetWindowCloseCallback(m_pWindow, [](GLFWwindow* pWindow)
@@ -156,6 +156,11 @@ namespace SandEngine {
     {
         glfwPollEvents();
         m_pContext->SwapBuffers();
+    }
+
+    float CWindowsWindow::GetWindowTime()
+    {
+        return glfwGetTime();
     }
 
     void CWindowsWindow::SetVSync(bool bEnable)

@@ -18,6 +18,12 @@ namespace SandEngine {
             s_pRendererAPI->Init();
         }
 
+        /// 设置视锥体
+        static void SetViewport(uint32_t x, uint32_t y, uint32_t nWidth, uint32_t nHeight)
+        {
+            s_pRendererAPI->SetViewport(x, y, nWidth, nHeight);
+        }
+
         /// 调用设置清空缓冲区的颜色 API
         static void SetClearColor(const glm::vec4& color)
         {

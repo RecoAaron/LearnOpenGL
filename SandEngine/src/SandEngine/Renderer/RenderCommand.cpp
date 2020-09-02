@@ -1,4 +1,5 @@
 ﻿#include "sdpch.h"
+
 #include "RenderCommand.h"
 
 namespace SandEngine {

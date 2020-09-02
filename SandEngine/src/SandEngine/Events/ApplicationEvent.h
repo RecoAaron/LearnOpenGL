@@ -9,10 +9,10 @@
 
 namespace SandEngine {
 
-    class CWindowResizeEvent : public CEvent
+    class CWindowResizedEvent : public CEvent
     {
     public:
-        CWindowResizeEvent(unsigned int nWidth, unsigned int nHeight)
+        CWindowResizedEvent(unsigned int nWidth, unsigned int nHeight)
             : m_nWidth(nWidth), m_nHeight(nHeight)
         {
 
