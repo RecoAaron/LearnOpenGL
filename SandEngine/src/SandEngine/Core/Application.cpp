@@ -1,10 +1,9 @@
-#include "sdpch.h"
+ï»¿#include "sdpch.h"
 
 #include "Application.h"
 
 #include "SandEngine/Events/ApplicationEvent.h"
-
-#include <glad/glad.h>
+#include "SandEngine/Renderer/Renderer.h"
 
 #include "Input.h"
 #include "InputCode.h"
@@ -20,13 +19,15 @@ namespace SandEngine {
         m_pWindow = CWindow::Create(SWindowProps(name));
         m_pWindow->SetEventCallback(SE_BIND_EVENT_FN(OnEvent));
 
+        CRenderer::Init();
+
         m_pImGuiLayer = new CImGuiLayer();
         PushOverlay(m_pImGuiLayer);
     }
 
     CApplication::~CApplication()
     {
-        
+        CRenderer::Shutdown();
     }
 
     void CApplication::PushLayer(CLayer* pLayer)
@@ -45,13 +46,10 @@ namespace SandEngine {
     {
         while (m_bRunning)
         {
-            glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
-            glClear(GL_COLOR_BUFFER_BIT);
-
             for (CLayer* pLayer : m_LayerStack)
                 pLayer->OnUpdate();
            
-            // ËùÓÐ²ã¼¶½øÐÐ ImGui »æÖÆ²Ù×÷
+            // æ‰€æœ‰å±‚çº§è¿›è¡Œ ImGui ç»˜åˆ¶æ“ä½œ
             m_pImGuiLayer->Begin();
             {
                 for (CLayer* layer : m_LayerStack)

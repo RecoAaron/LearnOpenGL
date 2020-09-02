@@ -1,29 +1,30 @@
-#pragma once
+ï»¿#pragma once
 /*************************************************
  * Copyright: @SandEngine
  * Author: RecoAaron
  * Date:2020-08-15
- * Description: Êó±êÊÂ¼ş´¦ÀíÀà
+ * Description: é¼ æ ‡äº‹ä»¶å¤„ç†ç±»
 *************************************************/
 #include "SandEngine/Events/Event.h"
+#include "SandEngine/Core/InputCode.h"
 
 namespace SandEngine {
 
     class CMouseMoveEvent : public CEvent
     {
     public:
-        CMouseMoveEvent(float nPosX, float nPosY)
+        CMouseMoveEvent(const float nPosX, const float nPosY)
             : m_nMouseX(nPosX), m_nMouseY(nPosY)
         {
 
         }
 
-        /// »ñÈ¡Êó±êµÄX×ø±êÎ»ÖÃ
+        /// è·å–é¼ æ ‡çš„Xåæ ‡ä½ç½®
         inline float GetPosX() const { return m_nMouseX; }
-        /// »ñÈ¡Êó±êµÄY×ø±êÎ»ÖÃ
+        /// è·å–é¼ æ ‡çš„Yåæ ‡ä½ç½®
         inline float GetPosY() const { return m_nMouseY; }
 
-        /// ÖØĞ´Êä³öº¯Êı£¬Êä³öÊó±êµÄ×ø±êĞÅÏ¢
+        /// é‡å†™è¾“å‡ºå‡½æ•°ï¼Œè¾“å‡ºé¼ æ ‡çš„åæ ‡ä¿¡æ¯
         std::string ToString() const override
         {
             std::stringstream ss;
@@ -31,32 +32,32 @@ namespace SandEngine {
             return ss.str();
         }
 
-        /* ÉèÖÃÊÂ¼şÎª£ºÊó±êÒÆ¶¯ÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ä¸ºï¼šé¼ æ ‡ç§»åŠ¨äº‹ä»¶ */
         SE_EVENT_CLASS_TYPE(SE_ET_MOUSE_MOVED)
 
-        /* ÉèÖÃÊÂ¼şÀàĞÍÎª£ºÊó±êÊÂ¼ş | ÊäÈëÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ç±»å‹ä¸ºï¼šé¼ æ ‡äº‹ä»¶ | è¾“å…¥äº‹ä»¶ */
         SE_EVENT_CLASS_CATEGORY(SE_EC_MOUSE | SE_EC_INPUT)
     
     private:
-        /* Êó±êµÄ×ø±êÎ»ÖÃ */
+        /* é¼ æ ‡çš„åæ ‡ä½ç½® */
         float m_nMouseX, m_nMouseY;
     };
 
     class CMouseScrolledEvent : public CEvent
     {
     public:
-        CMouseScrolledEvent(float nXOffset, float nYOffset)
+        CMouseScrolledEvent(const float nXOffset, const float nYOffset)
             : m_nXOffset(nXOffset), m_nYOffset(nYOffset)
         {
 
         }
 
-        /// »ñÈ¡Êó±êµÄXÆ«ÒÆ
+        /// è·å–é¼ æ ‡çš„Xåç§»
         inline float GetXOffset() const { return m_nXOffset; }
-        /// »ñÈ¡Êó±êµÄYÆ«ÒÆ
+        /// è·å–é¼ æ ‡çš„Yåç§»
         inline float GetYOffset() const { return m_nYOffset; }
 
-        /// ÖØĞ´Êä³öº¯Êı£¬Êä³öÊó±êµÄÆ«ÒÆĞÅÏ¢
+        /// é‡å†™è¾“å‡ºå‡½æ•°ï¼Œè¾“å‡ºé¼ æ ‡çš„åç§»ä¿¡æ¯
         std::string ToString() const override
         {
             std::stringstream ss;
@@ -64,47 +65,47 @@ namespace SandEngine {
             return ss.str();
     	}
 
-        /* ÉèÖÃÊÂ¼şÎª£ºÊó±êÒÆ¶¯ÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ä¸ºï¼šé¼ æ ‡ç§»åŠ¨äº‹ä»¶ */
         SE_EVENT_CLASS_TYPE(SE_ET_MOUSE_SCROLLED)
 
-        /* ÉèÖÃÊÂ¼şÀàĞÍÎª£ºÊó±êÊÂ¼ş | ÊäÈëÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ç±»å‹ä¸ºï¼šé¼ æ ‡äº‹ä»¶ | è¾“å…¥äº‹ä»¶ */
         SE_EVENT_CLASS_CATEGORY(SE_EC_MOUSE | SE_EC_INPUT)
 
     private:
-        /* Êó±êµÄ×ø±êÆ«ÒÆ */
+        /* é¼ æ ‡çš„åæ ‡åç§» */
         float m_nXOffset, m_nYOffset;
     };
 
     class CMouseButtonEvent : public CEvent
     {
     public:
-        /// »ñÈ¡Êó±ê°´¼üÖµ
-        inline int GetMouseButton() const { return m_nButton; }
+        /// è·å–é¼ æ ‡æŒ‰é”®å€¼
+        KeyCode GetMouseButton() const { return m_nButton; }
 
-        /* ÉèÖÃÊÂ¼şÀàĞÍÎª£ºÊó±êÊÂ¼ş | ÊäÈëÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ç±»å‹ä¸ºï¼šé¼ æ ‡äº‹ä»¶ | è¾“å…¥äº‹ä»¶ */
         SE_EVENT_CLASS_CATEGORY(SE_EC_MOUSE | SE_EC_INPUT)
     
     protected:
-        CMouseButtonEvent(int nButton)
+        CMouseButtonEvent(const KeyCode nButton)
             : m_nButton(nButton)
         {
 
         }
 
-        /* Êó±ê°´¼üÖµ */
-        int m_nButton;
+        /* é¼ æ ‡æŒ‰é”®å€¼ */
+        KeyCode m_nButton;
     };
     
     class CMouseButtonPressedEvent : public CMouseButtonEvent
     {
     public:
-        CMouseButtonPressedEvent(int nButton)
+        CMouseButtonPressedEvent(const KeyCode nButton)
             : CMouseButtonEvent(nButton)
         {
 
         }
 
-        /// ÖØĞ´Êä³öº¯Êı£¬Êä³öÊó±ê°´¼üµÄÖµ
+        /// é‡å†™è¾“å‡ºå‡½æ•°ï¼Œè¾“å‡ºé¼ æ ‡æŒ‰é”®çš„å€¼
         std::string ToString() const override
         {
             std::stringstream ss;
@@ -112,20 +113,20 @@ namespace SandEngine {
             return ss.str();
         }
 
-        /* ÉèÖÃÊÂ¼şÎª£ºÊó±ê¼ü°´ÏÂÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ä¸ºï¼šé¼ æ ‡é”®æŒ‰ä¸‹äº‹ä»¶ */
         SE_EVENT_CLASS_TYPE(SE_ET_MBTN_PRESSED)
     };
     
     class CMouseButtonReleasedEvent : public CMouseButtonEvent
     {
     public:
-        CMouseButtonReleasedEvent(int nButton)
+        CMouseButtonReleasedEvent(const KeyCode nButton)
             : CMouseButtonEvent(nButton)
         {
 
         }
 
-        /// ÖØĞ´Êä³öº¯Êı£¬Êä³öÊó±ê°´¼üµÄÖµ
+        /// é‡å†™è¾“å‡ºå‡½æ•°ï¼Œè¾“å‡ºé¼ æ ‡æŒ‰é”®çš„å€¼
         std::string ToString() const override
         {
             std::stringstream ss;
@@ -133,7 +134,7 @@ namespace SandEngine {
             return ss.str();
         }
 
-        /* ÉèÖÃÊÂ¼şÎª£ºÊó±ê¼üËÉ¿ªÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ä¸ºï¼šé¼ æ ‡é”®æ¾å¼€äº‹ä»¶ */
         SE_EVENT_CLASS_TYPE(SE_ET_MBTN_RELEASED)
     };
 }

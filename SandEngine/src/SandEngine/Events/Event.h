@@ -1,13 +1,11 @@
-#pragma once
+ï»¿#pragma once
 /*************************************************
  * Copyright: @SandEngine
  * Author: RecoAaron
  * Date:2020-08-15
- * Description: ÊÂ¼ş´¦Àí³éÏóÀà
+ * Description: äº‹ä»¶å¤„ç†æŠ½è±¡ç±»
 *************************************************/
 #include "sdpch.h"
-
-#include "SandEngine/Core/Base.h"
 
 namespace SandEngine {
 
@@ -15,43 +13,43 @@ namespace SandEngine {
     {
         SE_ET_NONE = 0,         // NULL
 
-        /* ´°¿ÚÊÂ¼ş */
-        SE_ET_WIN_CLOSE,        // ´°¿Ú¹Ø±ÕÊÂ¼ş
-        SE_ET_WIN_RESIZE,       // ´°¿ÚËõ·ÅÊÂ¼ş
+        /* çª—å£äº‹ä»¶ */
+        SE_ET_WIN_CLOSE,        // çª—å£å…³é—­äº‹ä»¶
+        SE_ET_WIN_RESIZE,       // çª—å£ç¼©æ”¾äº‹ä»¶
 
-        /* Ó¦ÓÃ³ÌĞòÊÂ¼ş */
-        SE_ET_APP_TICK,        // Ö¡ÊÂ¼ş
-        SE_ET_APP_UPDATE,      // ¸üĞÂÊÂ¼ş
+        /* åº”ç”¨ç¨‹åºäº‹ä»¶ */
+        SE_ET_APP_TICK,        // å¸§äº‹ä»¶
+        SE_ET_APP_UPDATE,      // æ›´æ–°äº‹ä»¶ 
 
-        /* ¼üÅÌÊÂ¼ş */
-        SE_ET_KEY_PRESSED,     // ¼ü°´ÏÂÊÂ¼ş
-        SE_ET_KEY_RELEASED,    // ¼üËÉ¿ªÊÂ¼ş
-        SE_ET_KEY_TYPED,       // °´¼üÊÂ¼ş
+        /* é”®ç›˜äº‹ä»¶ */
+        SE_ET_KEY_PRESSED,     // é”®æŒ‰ä¸‹äº‹ä»¶
+        SE_ET_KEY_RELEASED,    // é”®æ¾å¼€äº‹ä»¶
+        SE_ET_KEY_TYPED,       // æŒ‰é”®äº‹ä»¶
 
-        /* Êó±êÊÂ¼ş */
-        SE_ET_MOUSE_MOVED,     // Êó±êÒÆ¶¯ÊÂ¼ş
-        SE_ET_MOUSE_SCROLLED,  // Êó±ê¹öÂÖÊÂ¼ş
-        SE_ET_MBTN_PRESSED,    // Êó±ê¼ü°´ÏÂÊÂ¼ş
-        SE_ET_MBTN_RELEASED,   // Êó±ê¼üËÉ¿ªÊÂ¼ş
-        SE_ET_MBTN_TYPED,      // Êó±ê°´¼üÊÂ¼ş
+        /* é¼ æ ‡äº‹ä»¶ */
+        SE_ET_MOUSE_MOVED,     // é¼ æ ‡ç§»åŠ¨äº‹ä»¶
+        SE_ET_MOUSE_SCROLLED,  // é¼ æ ‡æ»šè½®äº‹ä»¶
+        SE_ET_MBTN_PRESSED,    // é¼ æ ‡é”®æŒ‰ä¸‹äº‹ä»¶
+        SE_ET_MBTN_RELEASED,   // é¼ æ ‡é”®æ¾å¼€äº‹ä»¶
+        SE_ET_MBTN_TYPED,      // é¼ æ ‡æŒ‰é”®äº‹ä»¶
     };
 
     enum EEventCategory
     {
         SE_EC_NONE              = 0,             // NULL
-        SE_EC_APPLICATION       = SE_BIT(0),     // Ó¦ÓÃÊÂ¼ş£¨0£©
-        SE_EC_INPUT             = SE_BIT(1),     // ÊäÈëÊÂ¼ş£¨1£©
-        SE_EC_KEYBOARD          = SE_BIT(2),     // ¼üÅÌÊÂ¼ş£¨2£©
-        SE_EC_MOUSE             = SE_BIT(3),     // Êó±êÊÂ¼ş£¨3£©
-        SE_EC_MOUSE_BTN         = SE_BIT(4)      // Êó±ê°´¼üÊÂ¼ş£¨4£©
+        SE_EC_APPLICATION       = SE_BIT(0),     // åº”ç”¨äº‹ä»¶ï¼ˆ0ï¼‰
+        SE_EC_INPUT             = SE_BIT(1),     // è¾“å…¥äº‹ä»¶ï¼ˆ1ï¼‰
+        SE_EC_KEYBOARD          = SE_BIT(2),     // é”®ç›˜äº‹ä»¶ï¼ˆ2ï¼‰
+        SE_EC_MOUSE             = SE_BIT(3),     // é¼ æ ‡äº‹ä»¶ï¼ˆ3ï¼‰
+        SE_EC_MOUSE_BTN         = SE_BIT(4)      // é¼ æ ‡æŒ‰é”®äº‹ä»¶ï¼ˆ4ï¼‰
     };
 
-/* ´´½¨Ä¬ÈÏµÄ·½·¨ */
+/* åˆ›å»ºé»˜è®¤çš„æ–¹æ³• */
 #define SE_EVENT_CLASS_TYPE(type) static EEventType GetStaticType() { return EEventType::##type; } \
     virtual EEventType GetEventType() const override { return GetStaticType(); } \
     virtual const char* GetName() const override { return #type; }
 
-/* ´´½¨»ñÈ¡ÊÂ¼ş±êÊ¶Î»µÄ·½·¨ */
+/* åˆ›å»ºè·å–äº‹ä»¶æ ‡è¯†ä½çš„æ–¹æ³• */
 #define SE_EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
 
@@ -60,25 +58,25 @@ namespace SandEngine {
     public:
         virtual ~CEvent() = default;
 
-        /// »ñÈ¡ÊÂ¼şµÄÀàĞÍ
+        /// è·å–äº‹ä»¶çš„ç±»å‹
         virtual EEventType GetEventType() const = 0;
 
-        /// »ñÈ¡ÊÂ¼şµÄÃû³Æ
+        /// è·å–äº‹ä»¶çš„åç§°
         virtual const char* GetName() const = 0;
 
-        /// »ñÈ¡ÊÂ¼şÀàĞÍµÄ±êÊ¶Î»
+        /// è·å–äº‹ä»¶ç±»å‹çš„æ ‡è¯†ä½
         virtual int GetCategoryFlags() const = 0;
 
-        /// ×Ö·û´®Êä³ö
+        /// å­—ç¬¦ä¸²è¾“å‡º
         virtual std::string ToString() const { return GetName(); }
         
-        /// ÅĞ¶ÏÊÇ·ñÊÇÄ³Ò»ÖÖÊÂ¼şÀàĞÍ
+        /// åˆ¤æ–­æ˜¯å¦æ˜¯æŸä¸€ç§äº‹ä»¶ç±»å‹
         bool IsInCategory(EEventCategory category)
         {
             return GetCategoryFlags() & category;
         }
 
-        /* ÊÂ¼şÊÇ·ñ´¦ÀíÍê±Ï */
+        /* äº‹ä»¶æ˜¯å¦å¤„ç†å®Œæ¯• */
         bool m_bHandled = false;
     };
 
@@ -91,7 +89,7 @@ namespace SandEngine {
 
         }
 
-        /// ÊÂ¼ş´¦ÀíÄ£°å
+        /// äº‹ä»¶å¤„ç†æ¨¡æ¿
         template<typename T, typename F>
         bool Dispatch(const F& func) 
         {
@@ -104,11 +102,11 @@ namespace SandEngine {
         }
     
     private:
-        /* ´¦ÀíµÄÊÂ¼ş */
+        /* å¤„ç†çš„äº‹ä»¶ */
         CEvent& m_Event;
     };
 
-    /// ¶¨ÒåÊÂ¼şµÄÁ÷²Ù×÷·ûºÅº¯Êı
+    /// å®šä¹‰äº‹ä»¶çš„æµæ“ä½œç¬¦å·å‡½æ•°
     inline std::ostream& operator<<(std::ostream& os, const CEvent& e)
     {
         return os << e.ToString();

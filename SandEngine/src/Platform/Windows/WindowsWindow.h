@@ -6,6 +6,7 @@
  * Description: Windows 平台窗口实现
 *************************************************/
 #include "SandEngine/Core/Window.h"
+#include "SandEngine/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 
@@ -63,5 +64,8 @@ namespace SandEngine {
 
         /* 窗口的指针 */
         GLFWwindow* m_pWindow;
+
+        /* 窗口的图形绘制上下文 */
+        Scope<CGraphicsContext> m_pContext;
     };
 }

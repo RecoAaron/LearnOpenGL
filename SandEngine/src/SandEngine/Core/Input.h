@@ -1,11 +1,10 @@
-#pragma once
+ï»¿#pragma once
 /*************************************************
  * Copyright: @SandEngine
  * Author: RecoAaron
  * Date:2020-08-29
- * Description: ÊäÈë½Ó¿Ú¶¨Òå
+ * Description: è¾“å…¥æ¥å£å®šä¹‰
 *************************************************/
-#include "SandEngine/Core/Base.h"
 
 namespace SandEngine {
 

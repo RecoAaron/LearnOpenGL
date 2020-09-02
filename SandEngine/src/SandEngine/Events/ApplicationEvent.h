@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 /*************************************************
  * Copyright: @SandEngine
  * Author: RecoAaron
  * Date:2020-08-15
- * Description: Ó¦ÓÃ³ÌĞòÊÂ¼ş´¦ÀíÀà
+ * Description: åº”ç”¨ç¨‹åºäº‹ä»¶å¤„ç†ç±»
 *************************************************/
 #include "SandEngine/Events/Event.h"
 
@@ -18,12 +18,12 @@ namespace SandEngine {
 
         }
 
-        /// »ñÈ¡´°¿ÚµÄ¿í¶È
+        /// è·å–çª—å£çš„å®½åº¦
         inline unsigned int GetWidth() const { return m_nWidth; }
-        /// »ñÈ¡´°¿ÚµÄ¸ß¶È
+        /// è·å–çª—å£çš„é«˜åº¦
         inline unsigned int GetHeight() const { return m_nHeight; }
 
-        /// ÖØĞ´Êä³öº¯Êı£¬Êä³ö´°¿ÚµÄ¿í¶ÈºÍ¸ß¶È
+        /// é‡å†™è¾“å‡ºå‡½æ•°ï¼Œè¾“å‡ºçª—å£çš„å®½åº¦å’Œé«˜åº¦
         std::string ToString() const override
         {
             std::stringstream ss;
@@ -31,14 +31,14 @@ namespace SandEngine {
             return ss.str();
         }
 
-        /* ÉèÖÃÊÂ¼şÎª£º´°¿ÚËõ·ÅÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ä¸ºï¼šçª—å£ç¼©æ”¾äº‹ä»¶ */
         SE_EVENT_CLASS_TYPE(SE_ET_WIN_RESIZE)
 
-        /* ÉèÖÃÊÂ¼şÀàĞÍÎª£ºÓ¦ÓÃÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ç±»å‹ä¸ºï¼šåº”ç”¨äº‹ä»¶ */
         SE_EVENT_CLASS_CATEGORY(SE_EC_APPLICATION)
 
     private:
-        /* ´°¿ÚµÄ¿í¶ÈºÍ¸ß¶È */
+        /* çª—å£çš„å®½åº¦å’Œé«˜åº¦ */
         unsigned int m_nWidth, m_nHeight;
     };
 
@@ -51,10 +51,10 @@ namespace SandEngine {
 
         }
 
-        /* ÉèÖÃÊÂ¼şÎª£º´°¿Ú¹Ø±ÕÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ä¸ºï¼šçª—å£å…³é—­äº‹ä»¶ */
         SE_EVENT_CLASS_TYPE(SE_ET_WIN_CLOSE)
 
-        /* ÉèÖÃÊÂ¼şÀàĞÍÎª£ºÓ¦ÓÃÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ç±»å‹ä¸ºï¼šåº”ç”¨äº‹ä»¶ */
         SE_EVENT_CLASS_CATEGORY(SE_EC_APPLICATION)
     };
 
@@ -66,10 +66,10 @@ namespace SandEngine {
 
         }
 
-        /* ÉèÖÃÊÂ¼şÎª£ºÖ¡ÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ä¸ºï¼šå¸§äº‹ä»¶ */
         SE_EVENT_CLASS_TYPE(SE_ET_APP_TICK)
 
-        /* ÉèÖÃÊÂ¼şÀàĞÍÎª£ºÓ¦ÓÃÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ç±»å‹ä¸ºï¼šåº”ç”¨äº‹ä»¶ */
         SE_EVENT_CLASS_CATEGORY(SE_EC_APPLICATION)
     };
 
@@ -81,10 +81,10 @@ namespace SandEngine {
 
         }
 
-        /* ÉèÖÃÊÂ¼şÎª£º´°¿Ú¹Ø±ÕÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ä¸ºï¼šçª—å£å…³é—­äº‹ä»¶ */
         SE_EVENT_CLASS_TYPE(SE_ET_APP_UPDATE)
 
-        /* ÉèÖÃÊÂ¼şÀàĞÍÎª£ºÓ¦ÓÃÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ç±»å‹ä¸ºï¼šåº”ç”¨äº‹ä»¶ */
         SE_EVENT_CLASS_CATEGORY(SE_EC_APPLICATION)
     };
 }

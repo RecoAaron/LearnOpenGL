@@ -1,23 +1,20 @@
-#pragma once
+ï»¿#pragma once
 /*************************************************
  * Copyright: @SandEngine
  * Author: RecoAaron
  * Date:2020-08-17
- * Description: ´°¿Ú³éÏóÀà
+ * Description: çª—å£æŠ½è±¡ç±»
 *************************************************/
-#include "sdpch.h"
-
-#include "SandEngine/Core/Base.h"
 #include "SandEngine/Events/Event.h"
 
 namespace SandEngine {
 
     struct SWindowProps
     {
-        /* ´°¿ÚµÄ±êÌâ */
+        /* çª—å£çš„æ ‡é¢˜ */
         std::string m_strTitle;
 
-        /* ´°¿ÚµÄ¿í¶ÈºÍ¸ß¶È */
+        /* çª—å£çš„å®½åº¦å’Œé«˜åº¦ */
         uint32_t m_nWidth, m_nHeight;
 
         SWindowProps(const std::string& strTitle = "Sand Engine", uint32_t nWidth = 1280, uint32_t nHeight = 720)
@@ -30,31 +27,31 @@ namespace SandEngine {
 	class CWindow
     {
     public:
-        /* ´°¿ÚÊÂ¼ş»Øµ÷º¯ÊıÀàĞÍ void fun(CEvent& event) */
+        /* çª—å£äº‹ä»¶å›è°ƒå‡½æ•°ç±»å‹ void fun(CEvent& event) */
         using EventCallbackFn = std::function<void(CEvent&)>;
 
         virtual ~CWindow() = default;
 
-        /// ´°¿Ú½øĞĞ¸üĞÂ
+        /// çª—å£è¿›è¡Œæ›´æ–°
         virtual void OnUpdate() = 0;
 
-        /// »ñÈ¡´°¿ÚµÄ¿í¶È
+        /// è·å–çª—å£çš„å®½åº¦
         virtual uint32_t GetWidth() const = 0;
-        /// »ñÈ¡´°¿ÚµÄ¸ß¶È
+        /// è·å–çª—å£çš„é«˜åº¦
         virtual uint32_t GetHeight() const = 0;
 
-        /// ÉèÖÃ´°¿ÚÊÂ¼şµÄ»Øµ÷º¯Êı
+        /// è®¾ç½®çª—å£äº‹ä»¶çš„å›è°ƒå‡½æ•°
         virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 
-        /// ÉèÖÃÊÇ·ñÆôÓÃ´¹Ö±Í¬²½
+        /// è®¾ç½®æ˜¯å¦å¯ç”¨å‚ç›´åŒæ­¥
         virtual void SetVSync(bool bEnable) = 0;
-        /// ÊÇ·ñÆôÓÃÁË´¹Ö±Í¬²½
+        /// æ˜¯å¦å¯ç”¨äº†å‚ç›´åŒæ­¥
         virtual bool IsVSync() const = 0;
 
-        /// »ñÈ¡Ô­ÉúµÄ´°¿Ú
+        /// è·å–åŸç”Ÿçš„çª—å£
         virtual void* GetNativeWindow() const = 0;
 
-        /// ¾²Ì¬¹¹Ôì´°¿Úº¯Êı£¬Scope = unique_ptr ·ÀÖ¹ÄÚ´æĞ¹Â©
+        /// é™æ€æ„é€ çª—å£å‡½æ•°ï¼ŒScope = unique_ptr é˜²æ­¢å†…å­˜æ³„æ¼
         static Scope<CWindow> Create(const SWindowProps& props = SWindowProps());
     };
 }

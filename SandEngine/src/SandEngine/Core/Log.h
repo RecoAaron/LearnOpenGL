@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 /*************************************************
  * Copyright: @SandEngine
  * Author: RecoAaron
  * Date:2020-08-15
- * Description: ¶¨Òå Log Êä³ö·½Ê½£¬Ê¹ÓÃ spdlog ¿â¡£
+ * Description: å®šä¹‰ Log è¾“å‡ºæ–¹å¼ï¼Œä½¿ç”¨ spdlog åº“ã€‚
 *************************************************/
 #include "SandEngine/Core/Base.h"
 
@@ -15,36 +15,40 @@ namespace SandEngine {
     class CLog
     {
     public:
-        /// ³õÊ¼»¯ÉèÖÃ Logger µÄÊä³öÑùÊ½
+        /// åˆå§‹åŒ–è®¾ç½® Logger çš„è¾“å‡ºæ ·å¼
         static void Init();
 
-        /// »ñÈ¡ºËĞÄ Logger ¶ÔÏó
+        /// è·å–æ ¸å¿ƒ Logger å¯¹è±¡
         static Ref<spdlog::logger>& GetCoreLogger() { return s_pLoggerCore; }
-        /// »ñÈ¡Ó¦ÓÃ³ÌĞòµÄ Logger ¶ÔÏó
+        /// è·å–åº”ç”¨ç¨‹åºçš„ Logger å¯¹è±¡
         static Ref<spdlog::logger>& GetApplicationLogger() { return s_pLoggerApplication; }
 
     private:
-        /* ºËĞÄ Logger ¶ÔÏóµÄÖ¸Õë */
+        /* æ ¸å¿ƒ Logger å¯¹è±¡çš„æŒ‡é’ˆ */
         static Ref<spdlog::logger> s_pLoggerCore;
-        /* Ó¦ÓÃ³ÌĞò Logger ¶ÔÏóµÄÖ¸Õë */
+        /* åº”ç”¨ç¨‹åº Logger å¯¹è±¡çš„æŒ‡é’ˆ */
         static Ref<spdlog::logger> s_pLoggerApplication;
     };
 }
 
-/* ºËĞÄ Logger Êä³ö trace ĞÅÏ¢ */
+/* æ ¸å¿ƒ Logger è¾“å‡º trace ä¿¡æ¯ */
 #define SE_LOG_TRACE_CORE(...)  ::SandEngine::CLog::GetCoreLogger()->trace(__VA_ARGS__)
-/* ºËĞÄ Logger Êä³ö info ĞÅÏ¢ */
+/* æ ¸å¿ƒ Logger è¾“å‡º info ä¿¡æ¯ */
 #define SE_LOG_INFO_CORE(...)   ::SandEngine::CLog::GetCoreLogger()->info(__VA_ARGS__)
-/* ºËĞÄ Logger Êä³ö warn ĞÅÏ¢ */
+/* æ ¸å¿ƒ Logger è¾“å‡º warn ä¿¡æ¯ */
 #define SE_LOG_WARN_CORE(...)   ::SandEngine::CLog::GetCoreLogger()->warn(__VA_ARGS__)
-/* ºËĞÄ Logger Êä³ö error ĞÅÏ¢ */
+/* æ ¸å¿ƒ Logger è¾“å‡º error ä¿¡æ¯ */
 #define SE_LOG_ERROR_CORE(...)  ::SandEngine::CLog::GetCoreLogger()->error(__VA_ARGS__)
+/* æ ¸å¿ƒ Logger è¾“å‡º critical ä¿¡æ¯ */
+#define SE_LOG_CRITICAL_CORE(...) ::SandEngine::CLog::GetCoreLogger()->critical(__VA_ARGS__)
 
-/* Ó¦ÓÃ³ÌĞò Logger Êä³ö trace ĞÅÏ¢ */
+/* åº”ç”¨ç¨‹åº Logger è¾“å‡º trace ä¿¡æ¯ */
 #define SE_LOG_TRACE(...)       ::SandEngine::CLog::GetApplicationLogger()->trace(__VA_ARGS__)
-/* Ó¦ÓÃ³ÌĞò Logger Êä³ö info ĞÅÏ¢ */
+/* åº”ç”¨ç¨‹åº Logger è¾“å‡º info ä¿¡æ¯ */
 #define SE_LOG_INFO(...)        ::SandEngine::CLog::GetApplicationLogger()->info(__VA_ARGS__)
-/* Ó¦ÓÃ³ÌĞò Logger Êä³ö warn ĞÅÏ¢ */
+/* åº”ç”¨ç¨‹åº Logger è¾“å‡º warn ä¿¡æ¯ */
 #define SE_LOG_WARN(...)        ::SandEngine::CLog::GetApplicationLogger()->warn(__VA_ARGS__)
-/* Ó¦ÓÃ³ÌĞò Logger Êä³ö error ĞÅÏ¢ */
+/* åº”ç”¨ç¨‹åº Logger è¾“å‡º error ä¿¡æ¯ */
 #define SE_LOG_ERROR(...)       ::SandEngine::CLog::GetApplicationLogger()->error(__VA_ARGS__)
+/* åº”ç”¨ç¨‹åº Logger è¾“å‡º critical ä¿¡æ¯ */
+#define SE_LOG_CRITICAL(...) ::SandEngine::CLog::GetApplicationLogger()->critical(__VA_ARGS__)

@@ -1,18 +1,18 @@
-#pragma once
+ï»¿#pragma once
 /*************************************************
  * Copyright: @SandEngine
  * Author: RecoAaron
  * Date:2020-08-15
- * Description: ×Ô¶¨Òå°´¼ü±àÂë£¬Óë GLFW ÏàÍ¬
+ * Description: è‡ªå®šä¹‰æŒ‰é”®ç¼–ç ï¼Œä¸ GLFW ç›¸åŒ
 *************************************************/
 
 namespace SandEngine {
 
-    using InputCodeSize = unsigned short;
+    using KeyCode = unsigned short;
 
     namespace InputCode {
-        /* Óë glfw3.h ÖĞµÄ±àÂëÖµÏàÍ¬ */
-        enum : InputCodeSize
+        /* ä¸ glfw3.h ä¸­çš„ç¼–ç å€¼ç›¸åŒ */
+        enum : KeyCode
         {
             SE_MOUSE_BTN_0              = 0,
             SE_MOUSE_BTN_1              = 1,

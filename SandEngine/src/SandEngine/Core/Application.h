@@ -1,13 +1,11 @@
-#pragma once
+ï»¿#pragma once
 /*************************************************
  * Copyright: @SandEngine
  * Author: RecoAaron
  * Date:2020-08-15
- * Description: Ó¦ÓÃ³ÌĞò¶¨Òå
+ * Description: åº”ç”¨ç¨‹åºå®šä¹‰
 *************************************************/
-#include "SandEngine/Core/Base.h"
 #include "SandEngine/Core/Window.h"
-#include "SandEngine/Events/Event.h"
 #include "SandEngine/Events/ApplicationEvent.h"
 #include "SandEngine/Core/LayerStack.h"
 #include "SandEngine/ImGui/ImGuiLayer.h"
@@ -20,44 +18,44 @@ namespace SandEngine {
         CApplication(const std::string& name = "Sand Engine");
         virtual ~CApplication();
 
-        /// »ñÈ¡´°¿ÚÖ¸Õë
+        /// è·å–çª—å£æŒ‡é’ˆ
         CWindow& GetWindow() { return *m_pWindow; }
 
-        /// ´°¿ÚÌí¼ÓÒ»¸ö²ã¼¶¶ÔÏó
+        /// çª—å£æ·»åŠ ä¸€ä¸ªå±‚çº§å¯¹è±¡
         void PushLayer(CLayer* pLayer);
-        /// ´°¿ÚÌí¼ÓÒ»¸ö¶¥²ã²ã¼¶¶ÔÏó
+        /// çª—å£æ·»åŠ ä¸€ä¸ªé¡¶å±‚å±‚çº§å¯¹è±¡
         void PushOverlay(CLayer* pOverlay); 
 
-        /// Ó¦ÓÃ³ÌĞò¿ªÊ¼ÔËĞĞ
+        /// åº”ç”¨ç¨‹åºå¼€å§‹è¿è¡Œ
         void Run();
 
-        /// ´¦ÀíÓ¦ÓÃ³ÌĞòÊÂ¼ş
+        /// å¤„ç†åº”ç”¨ç¨‹åºäº‹ä»¶
         void OnEvent(CEvent& event);
 
-        /// Ó¦ÓÃ³ÌĞò¹Ø±ÕÊÂ¼ş
+        /// åº”ç”¨ç¨‹åºå…³é—­äº‹ä»¶
         bool OnWindowClose(CWindowCloseEvent& event);
 
-        /// »ñÈ¡Ó¦ÓÃ³ÌĞòµ¥Àı¶ÔÏó
+        /// è·å–åº”ç”¨ç¨‹åºå•ä¾‹å¯¹è±¡
         static CApplication& GetInstance() { return *s_pInstance; }
 
     private:
-        /* ´°¿ÚÖ¸Õë */
+        /* çª—å£æŒ‡é’ˆ */
         Scope<CWindow> m_pWindow;
 
-        /* ImGui ²ã¼¶£¬¿Õ²ã¼¶ÓÃÓÚµ÷ÓÃº¯Êı */
+        /* ImGui å±‚çº§ï¼Œç©ºå±‚çº§ç”¨äºè°ƒç”¨å‡½æ•° */
         CImGuiLayer* m_pImGuiLayer;
 
-        /* ´°¿Ú²ã¼¶´æ´¢Õ» */
+        /* çª—å£å±‚çº§å­˜å‚¨æ ˆ */
         CLayerStack m_LayerStack;
 
-        /* Ó¦ÓÃ³ÌĞòÔËĞĞ±êÖ¾ */
+        /* åº”ç”¨ç¨‹åºè¿è¡Œæ ‡å¿— */
         bool m_bRunning = true;
 
     private:
-        /* Ó¦ÓÃ³ÌĞòµ¥ÀıÖ¸Õë */
+        /* åº”ç”¨ç¨‹åºå•ä¾‹æŒ‡é’ˆ */
         static CApplication* s_pInstance;
     };
 
-    /// ×Ô¶¨Òå´´½¨Ó¦ÓÃ³ÌĞòµÄ·½·¨
+    /// è‡ªå®šä¹‰åˆ›å»ºåº”ç”¨ç¨‹åºçš„æ–¹æ³•
     CApplication* CreateApplication();
 }

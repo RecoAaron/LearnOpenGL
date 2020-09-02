@@ -5,6 +5,7 @@
 #include "SandEngine/Events/ApplicationEvent.h"
 #include "SandEngine/Events/KeyEvent.h"
 #include "SandEngine/Events/MouseEvent.h"
+#include "SandEngine/Renderer/Renderer.h"
 
 #include <glad/glad.h>
 
@@ -42,16 +43,23 @@ namespace SandEngine {
             glfwSetErrorCallback(GLFWErrorCallback);
         }
 
-        m_pWindow = glfwCreateWindow((int)props.m_nWidth, (int)props.m_nHeight, m_Data.m_strTitle.c_str(), nullptr, nullptr);
-        ++s_nGLFWWindowCount;
+        { // init renderer and glfw
+        #if defined(SE_DEBUG)
+            if (CRenderer::GetAPI() == CRendererAPI::EAPI::OpenGL)
+                glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+        #endif
+            m_pWindow = glfwCreateWindow((int)props.m_nWidth, (int)props.m_nHeight, m_Data.m_strTitle.c_str(), nullptr, nullptr);
+            ++s_nGLFWWindowCount;
+        }
 
-        glfwMakeContextCurrent(m_pWindow);
-        int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-        SE_CORE_ASSERT(status, "Failed to initialize Glad!");
+        m_pContext = CGraphicsContext::Create(m_pWindow);
+        m_pContext->Init();
+
         glfwSetWindowUserPointer(m_pWindow, &m_Data);
         SetVSync(true);
 
         // 绑定 GLFW 回调函数处理事件
+        /* Window Resize Event */
         glfwSetWindowSizeCallback(m_pWindow, [](GLFWwindow* pWindow, int nWidth, int nHeight)
             {
                 SWindowData& data = *(SWindowData*)glfwGetWindowUserPointer(pWindow);
@@ -60,14 +68,14 @@ namespace SandEngine {
 
                 data.EventCallback(CWindowResizeEvent(nWidth, nHeight));
             });
-
+        /* Window Close Event */
         glfwSetWindowCloseCallback(m_pWindow, [](GLFWwindow* pWindow)
             {
                 SWindowData& data = *(SWindowData*)glfwGetWindowUserPointer(pWindow);
 
                 data.EventCallback(CWindowCloseEvent());
             });
-
+        /* Key Pressed Event, Key Released Event */
         glfwSetKeyCallback(m_pWindow, [](GLFWwindow* pWindow, int nKey, int nScancode, int nAction, int nMods)
             {
                 SWindowData& data = *(SWindowData*)glfwGetWindowUserPointer(pWindow);
@@ -91,7 +99,14 @@ namespace SandEngine {
                 break;
                 }
             });
+        /* Key Typed Event */
+        glfwSetCharCallback(m_pWindow, [](GLFWwindow* pWindow, unsigned int nKeycode)
+            {
+                SWindowData& data = *(SWindowData*)glfwGetWindowUserPointer(pWindow);
 
+                data.EventCallback(CKeyTypedEvent(nKeycode));
+            });
+        /* Mouse Pressed Event, Mouse Released Event */
         glfwSetMouseButtonCallback(m_pWindow, [](GLFWwindow* pWindow, int nButton, int nAction, int nMods)
             {
                 SWindowData& data = *(SWindowData*)glfwGetWindowUserPointer(pWindow);
@@ -101,23 +116,23 @@ namespace SandEngine {
                 case GLFW_PRESS:
                 {
                     data.EventCallback(CMouseButtonPressedEvent(nButton));
+                    break;
                 }
-                break;
                 case GLFW_RELEASE:
                 {
                     data.EventCallback(CMouseButtonReleasedEvent(nButton));
+                    break;
                 }
-                break;
                 }
             });
-
+        /* Mouse Scrolled Event */
         glfwSetScrollCallback(m_pWindow, [](GLFWwindow* pWindow, double nXOffset, double nYOffset)
             {
                 SWindowData& data = *(SWindowData*)glfwGetWindowUserPointer(pWindow);
 
                 data.EventCallback(CMouseScrolledEvent((float)nXOffset, (float)nYOffset));
             });
-
+        /* Mouse Moved Event */
         glfwSetCursorPosCallback(m_pWindow, [](GLFWwindow* pWindow, double nPosX, double nPosY)
             {
                 SWindowData& data = *(SWindowData*)glfwGetWindowUserPointer(pWindow);
@@ -140,7 +155,7 @@ namespace SandEngine {
     void CWindowsWindow::OnUpdate()
     {
         glfwPollEvents();
-        glfwSwapBuffers(m_pWindow);
+        m_pContext->SwapBuffers();
     }
 
     void CWindowsWindow::SetVSync(bool bEnable)

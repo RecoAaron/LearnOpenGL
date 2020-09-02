@@ -1,4 +1,4 @@
-#include "sdpch.h"
+ï»¿#include "sdpch.h"
 
 #include "Log.h"
 
@@ -7,7 +7,7 @@
 
 namespace SandEngine {
 
-    /* static ³ÉÔ±¶ÔÏóÔÚÀàÍâ²¿½øĞĞ³õÊ¼»¯*/
+    /* static æˆå‘˜å¯¹è±¡åœ¨ç±»å¤–éƒ¨è¿›è¡Œåˆå§‹åŒ–*/
     Ref<spdlog::logger> CLog::s_pLoggerCore;
     Ref<spdlog::logger> CLog::s_pLoggerApplication;
 

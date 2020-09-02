@@ -1,11 +1,10 @@
-#pragma once
+ï»¿#pragma once
 /*************************************************
  * Copyright: @SandEngine
  * Author: RecoAaron
  * Date:2020-08-15
- * Description: Layer ²ã¼¶³éÏóÀà¡£
+ * Description: Layer å±‚çº§æŠ½è±¡ç±»ã€‚
 *************************************************/
-#include "SandEngine/Core/Base.h"
 #include "SandEngine/Events/Event.h"
 
 namespace SandEngine {
@@ -16,26 +15,26 @@ namespace SandEngine {
         CLayer(const std::string& strName = "Layer");
         virtual ~CLayer() = default;
 
-        /// ²ã¼¶¸½¼ÓÊ±
+        /// å±‚çº§é™„åŠ æ—¶
         virtual void OnAttach() {}
 
-        /// ²ã¼¶Àë¿ªÊ±
+        /// å±‚çº§ç¦»å¼€æ—¶
         virtual void OnDetach() {}
 
-        /// ²ã¼¶¸üĞÂÊ±
+        /// å±‚çº§æ›´æ–°æ—¶
         virtual void OnUpdate() {}
 
-        /// ²ã¼¶ ImGui ¸üĞÂÊ±
+        /// å±‚çº§ ImGui æ›´æ–°æ—¶
         virtual void OnImGuiRender() {}
 
-        /// ²ã¼¶ÊÂ¼ş´¦Àí
+        /// å±‚çº§äº‹ä»¶å¤„ç†
         virtual void OnEvent(CEvent& event) {}
 
-        /// »ñÈ¡²ã¼¶µÄÃû×Ö
+        /// è·å–å±‚çº§çš„åå­—
         const std::string& GetName() const { return m_strName; }
 
     protected:
-        /* ²ã¼¶µÄÃû×Ö */
+        /* å±‚çº§çš„åå­— */
         std::string m_strName;
     };
 }

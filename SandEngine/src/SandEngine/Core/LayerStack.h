@@ -1,11 +1,10 @@
-#pragma once
+ï»¿#pragma once
 /*************************************************
  * Copyright: @SandEngine
  * Author: RecoAaron
  * Date:2020-08-15
- * Description: Layer Õ»¹ÜÀíÀà¡£
+ * Description: Layer æ ˆç®¡ç†ç±»ã€‚
 *************************************************/
-#include "SandEngine/Core/Base.h"
 #include "SandEngine/Core/Layer.h"
 
 namespace SandEngine {
@@ -16,32 +15,32 @@ namespace SandEngine {
         CLayerStack();
         ~CLayerStack();
 
-        /// Õ»ÍÆÈëÒ»¸ö²ã¼¶¶ÔÏó
+        /// æ ˆæ¨å…¥ä¸€ä¸ªå±‚çº§å¯¹è±¡
         void PushLayer(CLayer* pLayer);
 
-        /// Õ»ÍÆ³öÒ»¸ö²ã¼¶¶ÔÏó
+        /// æ ˆæ¨å‡ºä¸€ä¸ªå±‚çº§å¯¹è±¡
         void PopLayer(CLayer* pLayer);
 
-        /// Õ»ÍÆÈëÒ»¸ö¶¥²ã²ã¼¶¶ÔÏó
+        /// æ ˆæ¨å…¥ä¸€ä¸ªé¡¶å±‚å±‚çº§å¯¹è±¡
         void PushOverlay(CLayer* pOverlay);
 
-        /// Õ»ÍÆ³öÒ»¸ö¶¥²ã²ã¼¶¶ÔÏó
+        /// æ ˆæ¨å‡ºä¸€ä¸ªé¡¶å±‚å±‚çº§å¯¹è±¡
         void PopOverlay(CLayer* pOverlay);
 
-        /// ·µ»ØÕ»µÄ×îµ×²ã
+        /// è¿”å›æ ˆçš„æœ€åº•å±‚
         std::vector<CLayer*>::iterator begin() { return m_vecLayers.begin(); }
-        /// ·µ»ØÕ»µÄ×î¶¥²ã
+        /// è¿”å›æ ˆçš„æœ€é¡¶å±‚
         std::vector<CLayer*>::iterator end() { return m_vecLayers.end(); }
-        /// ·µ»ØÕ»µÄ×î¶¥²ã
+        /// è¿”å›æ ˆçš„æœ€é¡¶å±‚
         std::vector<CLayer*>::reverse_iterator rbegin() { return m_vecLayers.rbegin(); }
-        /// ·µ»ØÕ»µÄ×îµ×²ã
+        /// è¿”å›æ ˆçš„æœ€åº•å±‚
         std::vector<CLayer*>::reverse_iterator rend() { return m_vecLayers.rend(); }
 
     private:
-        /* ²ã¼¶´æ´¢µÄÕ» */
+        /* å±‚çº§å­˜å‚¨çš„æ ˆ */
         std::vector<CLayer*> m_vecLayers;
 
-        /* ²ã¼¶·Ö½çµã£¬Ç°²¿·ÖÊÇÆÕÍ¨²ã¼¶£¬ºó²¿·ÖÊÇ¶¥²ã²ã¼¶ */
+        /* å±‚çº§åˆ†ç•Œç‚¹ï¼Œå‰éƒ¨åˆ†æ˜¯æ™®é€šå±‚çº§ï¼Œåéƒ¨åˆ†æ˜¯é¡¶å±‚å±‚çº§ */
         uint32_t m_nLayerInsertIndex;
     };
 }

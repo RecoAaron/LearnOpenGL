@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 /*************************************************
  * Copyright: @SandEngine
  * Author: RecoAaron
  * Date:2020-08-15
- * Description: GUI ²ã¼¶Àà
+ * Description: GUI å±‚çº§ç±»
 *************************************************/
 #include "SandEngine/Core/Layer.h"
 
@@ -15,18 +15,18 @@ namespace SandEngine {
         CImGuiLayer();
         ~CImGuiLayer();
 
-        /// ²ã¼¶¸½¼ÓÊ±
+        /// å±‚çº§é™„åŠ æ—¶
         virtual void OnAttach();
 
-        /// ²ã¼¶Àë¿ªÊ±
+        /// å±‚çº§ç¦»å¼€æ—¶
         virtual void OnDetach();
 
-        /// ²ã¼¶ÊÂ¼ş´¦Àí
+        /// å±‚çº§äº‹ä»¶å¤„ç†
         virtual void OnEvent(CEvent& event);
 
-        /// ¿ªÊ¼ ImGui »æÖÆ
+        /// å¼€å§‹ ImGui ç»˜åˆ¶
         void Begin();
-        /// ½áÊø ImGui »æÖÆ
+        /// ç»“æŸ ImGui ç»˜åˆ¶
         void End();
 
     private:

@@ -1,47 +1,48 @@
-#pragma once
+ï»¿#pragma once
 /*************************************************
  * Copyright: @SandEngine
  * Author: RecoAaron
  * Date:2020-08-15
- * Description: ¼üÅÌÊÂ¼ş´¦ÀíÀà
+ * Description: é”®ç›˜äº‹ä»¶å¤„ç†ç±»
 *************************************************/
 #include "SandEngine/Events/Event.h"
+#include "SandEngine/Core/InputCode.h"
 
 namespace SandEngine {
 
     class CKeyEvent : public CEvent
     {
     public:
-        /// »ñÈ¡°´¼üµÄ±àÂë
+        /// è·å–æŒ‰é”®çš„ç¼–ç 
         inline int GetKeyCode() const { return m_nKeyCode; }
 
-        /* ÉèÖÃÊÂ¼şÀàĞÍÎª£º¼üÅÌÊÂ¼ş | ÊäÈëÊÂ¼ş */
+        /* è®¾ç½®äº‹ä»¶ç±»å‹ä¸ºï¼šé”®ç›˜äº‹ä»¶ | è¾“å…¥äº‹ä»¶ */
         SE_EVENT_CLASS_CATEGORY(SE_EC_KEYBOARD | SE_EC_INPUT)
 
     protected:
-        CKeyEvent(int nKeycode)
+        CKeyEvent(const KeyCode nKeycode)
             : m_nKeyCode(nKeycode)
         {
 
         }
 
-        /* °´¼üµÄ±àÂë */
-        int m_nKeyCode;
+        /* æŒ‰é”®çš„ç¼–ç  */
+        KeyCode m_nKeyCode;
     };
 
     class CKeyPressedEvent : public CKeyEvent
     {
     public:
-        CKeyPressedEvent(int nKeycode, int nRepeatCount)
+        CKeyPressedEvent(const KeyCode nKeycode, int nRepeatCount)
             :CKeyEvent(nKeycode), m_nRepeatCount(nRepeatCount)
         {
 
         }
 
-        /// »ñÈ¡ÖØ¸´´ÎÊı£¬³¬¹ı0±êÊ¶¼ü³¤°´
+        /// è·å–é‡å¤æ¬¡æ•°ï¼Œè¶…è¿‡0æ ‡è¯†é”®é•¿æŒ‰
         inline int GetRepeatCount() const { return m_nRepeatCount; }
 
-        /// ÖØĞ´Êä³öº¯Êı£¬Êä³ö°´¼üµÄ±àÂëºÍÖØ¸´´ÎÊı
+        /// é‡å†™è¾“å‡ºå‡½æ•°ï¼Œè¾“å‡ºæŒ‰é”®çš„ç¼–ç å’Œé‡å¤æ¬¡æ•°
         std::string ToString() const override
         {
             std::stringstream ss;
@@ -49,24 +50,24 @@ namespace SandEngine {
             return ss.str();
         }
 
-        /// ÉèÖÃÊÂ¼şÎª£º¼ü°´ÏÂÊÂ¼ş
+        /// è®¾ç½®äº‹ä»¶ä¸ºï¼šé”®æŒ‰ä¸‹äº‹ä»¶
         SE_EVENT_CLASS_TYPE(SE_ET_KEY_PRESSED)
     
     private:
-        /* °´¼üµÄÖØ¸´´ÎÊı */
+        /* æŒ‰é”®çš„é‡å¤æ¬¡æ•° */
         int m_nRepeatCount;
     };
 
     class CKeyReleasedEvent : public CKeyEvent
     {
     public:
-        CKeyReleasedEvent(int nKeycode)
+        CKeyReleasedEvent(const KeyCode nKeycode)
             : CKeyEvent(nKeycode)
         {
 
         }
 
-        /// ÖØĞ´Êä³öº¯Êı£¬Êä³ö°´¼üµÄ±àÂë
+        /// é‡å†™è¾“å‡ºå‡½æ•°ï¼Œè¾“å‡ºæŒ‰é”®çš„ç¼–ç 
         std::string ToString() const override
         {
             std::stringstream ss;
@@ -74,7 +75,26 @@ namespace SandEngine {
             return ss.str();
         }
 
-        /// ÉèÖÃ¼ü°´ÏÂÊÂ¼şÎª£º¼ü°´ÏÂÊÂ¼ş
+        /// è®¾ç½®é”®æŒ‰ä¸‹äº‹ä»¶ä¸ºï¼šé”®æŒ‰ä¸‹äº‹ä»¶
         SE_EVENT_CLASS_TYPE(SE_ET_KEY_RELEASED)
+    };
+
+    class CKeyTypedEvent : public CKeyEvent
+    {
+    public:
+        CKeyTypedEvent(const KeyCode keycode)
+            : CKeyEvent(keycode)
+        {
+
+        }
+
+        std::string ToString() const override
+        {
+            std::stringstream ss;
+            ss << "KeyTypedEvent: " << m_nKeyCode;
+            return ss.str();
+        }
+
+        SE_EVENT_CLASS_TYPE(SE_ET_KEY_TYPED)
     };
 }
