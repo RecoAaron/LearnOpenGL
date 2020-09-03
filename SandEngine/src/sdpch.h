@@ -11,6 +11,7 @@
 #include <sstream>
 #include <memory>
 #include <vector>
+#include <fstream>
 
 #include "SandEngine/Core/Log.h"
 
