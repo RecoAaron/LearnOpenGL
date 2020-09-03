@@ -5,9 +5,6 @@
 #include "SandEngine/Events/ApplicationEvent.h"
 #include "SandEngine/Renderer/Renderer.h"
 
-#include "Input.h"
-#include "InputCode.h"
-
 namespace SandEngine {
 
     CApplication* CApplication::s_pInstance = nullptr;

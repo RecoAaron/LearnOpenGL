@@ -8,19 +8,7 @@
 
 #include <memory>
 
-/* 平台预定义宏 */
-#ifdef _WIN32
-    /* Windows x64/x86 */
-    #ifdef _WIN64
-        /* Windows x64 */
-        #define SE_PLATFORM_WINDOWS
-    #else
-        /* Windows x86 */
-        #error "x86 builds are not supported!"
-    #endif
-#else
-    #error "SandEngine is only for Windows!"
-#endif
+#include "SandEngine/Core/PlatformDetection.h"
 
 /* debug 模式下启用 assert */
 #ifdef SE_DEBUG

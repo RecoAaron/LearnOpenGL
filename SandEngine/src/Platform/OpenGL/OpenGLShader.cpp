@@ -35,7 +35,7 @@ namespace  SandEngine {
     }
 
     COpenGLShader::COpenGLShader(const std::string& strName, const std::string& strVertexSrc, const std::string& strFragmentSrc)
-        : m_strName(strName), m_nRendererID(0)
+        : m_strName(strName)
     {
         std::unordered_map<GLenum, std::string> sources;
         sources[GL_VERTEX_SHADER] = strVertexSrc;

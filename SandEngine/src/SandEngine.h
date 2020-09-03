@@ -21,6 +21,7 @@
 
 #include "SandEngine/Renderer/Buffer.h"
 #include "SandEngine/Renderer/Shader.h"
+#include "SandEngine/Renderer/Texture.h"
 #include "SandEngine/Renderer/VertexArray.h"
 
 #include "SandEngine/Renderer/OrthographicCamera.h"

@@ -22,6 +22,7 @@ IncludeDir["GLFW"] = "%{wks.location}/SandEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "%{wks.location}/SandEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "%{wks.location}/SandEngine/vendor/imgui"
 IncludeDir["glm"] = "%{wks.location}/SandEngine/vendor/glm"
+IncludeDir["stb"] = "%{wks.location}/SandEngine/vendor/stb"
 
 group "Dependencies"
     include "vendor/premake"

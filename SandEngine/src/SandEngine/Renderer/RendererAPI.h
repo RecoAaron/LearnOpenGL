@@ -14,7 +14,7 @@ namespace SandEngine {
     class CRendererAPI
     {
     public:
-        enum class EAPI
+        enum class ERenderAPI
         {
             None    = 0, 
             OpenGL  = 1
@@ -38,13 +38,13 @@ namespace SandEngine {
         virtual void DrawIndexed(const Ref<CVertexArray>& pVertexArray, uint32_t nIndexCount = 0) = 0;
 
         /// 获取 API
-        static EAPI GetAPI() { return s_API; }
+        static ERenderAPI GetAPI() { return s_API; }
 
         /// 创建 API 对象
         static Scope<CRendererAPI> Create();
 
     private:
         /* API 对象 */
-        static EAPI s_API;
+        static ERenderAPI s_API;
     };
 }

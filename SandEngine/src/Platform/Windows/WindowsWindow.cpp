@@ -45,7 +45,7 @@ namespace SandEngine {
 
         { // init renderer and glfw
         #if defined(SE_DEBUG)
-            if (CRenderer::GetAPI() == CRendererAPI::EAPI::OpenGL)
+            if (CRenderer::GetAPI() == CRendererAPI::ERenderAPI::OpenGL)
                 glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
         #endif
             m_pWindow = glfwCreateWindow((int)props.m_nWidth, (int)props.m_nHeight, m_Data.m_strTitle.c_str(), nullptr, nullptr);

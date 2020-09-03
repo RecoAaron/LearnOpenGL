@@ -17,5 +17,9 @@ private:
     SandEngine::Ref<SandEngine::CShader> m_Shader;
     SandEngine::Ref<SandEngine::CVertexArray> m_VertexArray;
 
+    SandEngine::Ref<SandEngine::CShader> m_SquareShader;
+    SandEngine::Ref<SandEngine::CVertexArray> m_SquareVertexArray;
+    SandEngine::Ref<SandEngine::CTexture2D> m_SquareTexture;
+
     SandEngine::COrthographicCameraController m_CameraController;
 };

@@ -30,7 +30,7 @@ namespace SandEngine {
         static void EndScene();
 
         /// 获取 API 类型
-        static CRendererAPI::EAPI GetAPI() { return CRendererAPI::GetAPI(); }
+        static CRendererAPI::ERenderAPI GetAPI() { return CRendererAPI::GetAPI(); }
 
         /// 使用着色器渲染
         static void Submit(const Ref<CShader>& pShader, const Ref<CVertexArray>& pVertexArray, const glm::mat4& mat4Transform = glm::mat4(1.0f));

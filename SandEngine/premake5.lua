@@ -14,7 +14,8 @@ project "SandEngine" -- 设置项目
     {
         "src/**.h",  -- 包含所有 .h文件
         "src/**.cpp",  -- 包含所有 .cpp文件
-        "vendor/glm/glm/**.hpp",
+        "vendor/stb/**.h",
+        "vendor/stb/**.cpp",
         "vendor/glm/glm/**.inl",
     }
 
@@ -32,6 +33,7 @@ project "SandEngine" -- 设置项目
         "%{IncludeDir.Glad}",
         "%{IncludeDir.ImGui}",
         "%{IncludeDir.glm}",
+        "%{IncludeDir.stb}",
     }
 
     links

@@ -11,8 +11,8 @@ namespace SandEngine {
     {
         switch (CRenderer::GetAPI())
         {
-        case CRendererAPI::EAPI::None:    SE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-        case CRendererAPI::EAPI::OpenGL:  return CreateRef<COpenGLVertexArray>();
+        case CRendererAPI::ERenderAPI::None:    SE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+        case CRendererAPI::ERenderAPI::OpenGL:  return CreateRef<COpenGLVertexArray>();
         }
 
         SE_CORE_ASSERT(false, "Unknown RendererAPI!");

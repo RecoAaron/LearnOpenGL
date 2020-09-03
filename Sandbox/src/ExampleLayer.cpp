@@ -3,6 +3,8 @@
 ExampleLayer::ExampleLayer()
     : CLayer("Example Layer"), m_CameraController(1280.0f / 720.0f)
 {
+#pragma region 测试用的三角形
+
     m_VertexArray = SandEngine::CVertexArray::Create();
 
     float vertices[3 * 7] = {
@@ -53,11 +55,42 @@ ExampleLayer::ExampleLayer()
 
             void main()
             {
-                color = vec4(v_Position * 0.5 + 0.5, 1.0);
+                color = v_Color;
             }
         )";
 
     m_Shader = SandEngine::CShader::Create("VertexPosColor", vertexSrc, fragmentSrc);
+
+#pragma endregion
+
+#pragma region 纹理加载及shader文件测试
+
+    m_SquareVertexArray = SandEngine::CVertexArray::Create();
+
+    float squareVertices[5 * 4] = {
+        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+         0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+         0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+        -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
+    };
+
+    SandEngine::Ref<SandEngine::CVertexBuffer> squareVertexBuffer = SandEngine::CVertexBuffer::Create(squareVertices, sizeof(squareVertices));
+    SandEngine::CBufferLayout squareLayout = {
+        { SandEngine::EShaderDataType::Float3, "a_Position" },
+        { SandEngine::EShaderDataType::Float2, "a_TexCoord" }
+    };
+    squareVertexBuffer->SetLayout(squareLayout);
+    m_SquareVertexArray->AddVertexBuffer(squareVertexBuffer);
+    uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+    SandEngine::Ref<SandEngine::CIndexBuffer> squareIndexBuffer = SandEngine::CIndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
+    m_SquareVertexArray->SetIndexBuffer(squareIndexBuffer);
+    m_SquareShader = SandEngine::CShader::Create("assets/shaders/Texture.glsl");
+    m_SquareTexture = SandEngine::CTexture2D::Create("assets/textures/Checkerboard.png");
+    m_SquareShader->Bind();
+    m_SquareShader->SetInt("u_Texture", 0);
+    m_SquareShader->Unbind();
+
+#pragma endregion
 }
 
 void ExampleLayer::OnAttach()
@@ -80,6 +113,8 @@ void ExampleLayer::OnUpdate(SandEngine::CTimestep& time)
     SandEngine::CRenderer::BeginScene(m_CameraController.GetCamera());
 
     SandEngine::CRenderer::Submit(m_Shader, m_VertexArray);
+    m_SquareTexture->Bind();
+    SandEngine::CRenderer::Submit(m_SquareShader, m_SquareVertexArray);
 
     SandEngine::CRenderer::EndScene();
 }
