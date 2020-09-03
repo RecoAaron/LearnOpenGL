@@ -39,5 +39,7 @@ namespace SandEngine {
 
         pVertexArray->Bind();
         CRenderCommand::DrawIndexed(pVertexArray);
+        pShader->Unbind();
+        pVertexArray->Unbind();
     }
 }

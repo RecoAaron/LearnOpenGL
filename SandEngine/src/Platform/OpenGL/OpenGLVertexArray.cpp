@@ -51,7 +51,6 @@ namespace SandEngine {
     {
         SE_CORE_ASSERT(pVertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
 
-        glBindVertexArray(m_nRendererID);
         pVertexBuffer->Bind();
 
         const auto& layout = pVertexBuffer->GetLayout();
@@ -99,14 +98,11 @@ namespace SandEngine {
             }
             }
         }
-        glBindVertexArray(0);
     }
 
     void COpenGLVertexArray::SetIndexBuffer(const Ref<CIndexBuffer>& pIndexBuffer)
     {
-        glBindVertexArray(m_nRendererID);
         pIndexBuffer->Bind();
-        glBindVertexArray(0);
 
         m_pIndexBuffer = pIndexBuffer;
     }

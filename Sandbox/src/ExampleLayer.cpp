@@ -19,11 +19,13 @@ ExampleLayer::ExampleLayer()
         { SandEngine::EShaderDataType::Float4, "a_Color" }
     };
     vertexBuffer->SetLayout(layout);
+    m_VertexArray->Bind();
     m_VertexArray->AddVertexBuffer(vertexBuffer);
 
     uint32_t indices[3] = { 0, 1, 2 };
     SandEngine::Ref<SandEngine::CIndexBuffer> indexBuffer = SandEngine::CIndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
     m_VertexArray->SetIndexBuffer(indexBuffer);
+    m_VertexArray->Unbind();
 
     m_ShaderLibrary.LoadShader("assets/shaders/Triangle.glsl");
 
@@ -46,10 +48,12 @@ ExampleLayer::ExampleLayer()
         { SandEngine::EShaderDataType::Float2, "a_TexCoord" }
     };
     squareVertexBuffer->SetLayout(squareLayout);
+    m_SquareVertexArray->Bind();
     m_SquareVertexArray->AddVertexBuffer(squareVertexBuffer);
     uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
     SandEngine::Ref<SandEngine::CIndexBuffer> squareIndexBuffer = SandEngine::CIndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
     m_SquareVertexArray->SetIndexBuffer(squareIndexBuffer);
+    m_SquareVertexArray->Unbind();
 
     auto squareShader = m_ShaderLibrary.LoadShader("assets/shaders/Texture.glsl");
     m_SquareTexture = SandEngine::CTexture2D::Create("assets/textures/Checkerboard.png");
