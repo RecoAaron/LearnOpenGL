@@ -14,13 +14,19 @@ extern SandEngine::CApplication* SandEngine::CreateApplication();
 int main(int argc, char** argv)
 {
     SandEngine::CLog::Init();
-    SE_LOG_TRACE_CORE("the logger core is logging!");
-    int id = 123456;
-    SE_LOG_INFO("application logging id : {0}", id);
 
+    SE_PROFILE_BEGIN_SESSION("Startup", "SandEngineProfile-Startup.json");
     auto app = SandEngine::CreateApplication();
+    SE_PROFILE_END_SESSION();
+
+    SE_PROFILE_BEGIN_SESSION("Runtime", "SandEngineProfile-Runtime.json");
     app->Run();
+    SE_PROFILE_END_SESSION();
+
+    SE_PROFILE_BEGIN_SESSION("Shutdown", "SandEngineProfile-Shutdown.json");
     delete app;
+    SE_PROFILE_END_SESSION();
+
     return 0;
 }
 

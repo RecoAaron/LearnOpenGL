@@ -10,6 +10,8 @@ namespace SandEngine {
     COpenGLTexture2D::COpenGLTexture2D(uint32_t nWidth, uint32_t nHeight)
         : m_nWidth(nWidth), m_nHeight(nHeight)
     {
+        SE_PROFILE_FUNCTION();
+
         m_nInternalFormat = GL_RGBA8;
         m_nDataFormat = GL_RGBA;
 
@@ -26,6 +28,8 @@ namespace SandEngine {
     COpenGLTexture2D::COpenGLTexture2D(const std::string& strPath)
         : m_strPath(strPath)
     {
+        SE_PROFILE_FUNCTION();
+
         // Use stb_image load texture
         int nWidth, nHeight, nChannels;
         stbi_set_flip_vertically_on_load(1);
@@ -71,11 +75,15 @@ namespace SandEngine {
 
     COpenGLTexture2D::~COpenGLTexture2D()
     {
+        SE_PROFILE_FUNCTION();
+
         glDeleteTextures(1, &m_nRendererID);
     }
 
     void COpenGLTexture2D::SetData(void* pData, uint32_t nSize)
     {
+        SE_PROFILE_FUNCTION();
+
         uint32_t bpp = m_nDataFormat == GL_RGBA ? 4 : 3;
         SE_CORE_ASSERT(nSize == m_nWidth * m_nHeight * bpp, "Data must be entire texture!");
         glTextureSubImage2D(m_nRendererID, 0, 0, 0, m_nWidth, m_nHeight, m_nDataFormat, GL_UNSIGNED_BYTE, pData);
@@ -83,6 +91,8 @@ namespace SandEngine {
 
     void COpenGLTexture2D::Bind(uint32_t nSlot /*= 0*/) const
     {
+        SE_PROFILE_FUNCTION();
+
         glBindTextureUnit(nSlot, m_nRendererID);
     }
 

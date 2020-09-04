@@ -20,6 +20,8 @@ namespace  SandEngine {
 
     COpenGLShader::COpenGLShader(const std::string& strFilepath)
     {
+        SE_PROFILE_FUNCTION();
+
         std::string strSource = this->ReadFile(strFilepath);
         auto shaderSources = this->PreProcess(strSource);
         this->Compile(shaderSources);
@@ -35,6 +37,8 @@ namespace  SandEngine {
     COpenGLShader::COpenGLShader(const std::string& strName, const std::string& strVertexSrc, const std::string& strFragmentSrc)
         : m_strName(strName)
     {
+        SE_PROFILE_FUNCTION();
+
         std::unordered_map<GLenum, std::string> sources;
         sources[GL_VERTEX_SHADER] = strVertexSrc;
         sources[GL_FRAGMENT_SHADER] = strFragmentSrc;
@@ -43,21 +47,29 @@ namespace  SandEngine {
 
     COpenGLShader::~COpenGLShader()
     {
+        SE_PROFILE_FUNCTION();
+
         glDeleteProgram(m_nRendererID);
     }
 
     void COpenGLShader::Bind() const
     {
+        SE_PROFILE_FUNCTION();
+
         glUseProgram(m_nRendererID);
     }
 
     void COpenGLShader::Unbind() const
     {
+        SE_PROFILE_FUNCTION();
+
         glUseProgram(0);
     }
 
     void COpenGLShader::SetInt(const std::string& strName, int nValue)
     {
+        SE_PROFILE_FUNCTION();
+
         UploadUniformInt(strName, nValue);
     }
 
@@ -69,6 +81,8 @@ namespace  SandEngine {
 
     void COpenGLShader::SetIntArray(const std::string& strName, int* pValues, uint32_t nCount)
     {
+        SE_PROFILE_FUNCTION();
+
         UploadUniformIntArray(strName, pValues, nCount);
     }
 
@@ -80,6 +94,8 @@ namespace  SandEngine {
 
     void COpenGLShader::SetFloat(const std::string& strName, float nValue)
     {
+        SE_PROFILE_FUNCTION();
+
         UploadUniformFloat(strName, nValue);
     }
 
@@ -91,6 +107,8 @@ namespace  SandEngine {
 
     void COpenGLShader::SetFloat2(const std::string& strName, const glm::vec2& vec2Value)
     {
+        SE_PROFILE_FUNCTION();
+
         UploadUniformFloat2(strName, vec2Value);
     }
 
@@ -102,6 +120,8 @@ namespace  SandEngine {
 
     void COpenGLShader::SetFloat3(const std::string& strName, const glm::vec3& vec3Value)
     {
+        SE_PROFILE_FUNCTION();
+
         UploadUniformFloat3(strName, vec3Value);
     }
 
@@ -113,6 +133,8 @@ namespace  SandEngine {
 
     void COpenGLShader::SetFloat4(const std::string& strName, const glm::vec4& vec4Value)
     {
+        SE_PROFILE_FUNCTION();
+
         UploadUniformFloat4(strName, vec4Value);
     }
 
@@ -124,24 +146,28 @@ namespace  SandEngine {
 
     void COpenGLShader::SetMat3(const std::string& strName, const glm::mat3& mat3Value)
     {
+        SE_PROFILE_FUNCTION();
+
         UploadUniformMat3(strName, mat3Value);
     }
 
     void COpenGLShader::UploadUniformMat3(const std::string& strName, const glm::mat3& mat3Value)
     {
-		GLint location = glGetUniformLocation(m_nRendererID, strName.c_str());
-		glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(mat3Value));
+        GLint location = glGetUniformLocation(m_nRendererID, strName.c_str());
+        glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(mat3Value));
     }
 
     void COpenGLShader::SetMat4(const std::string& strName, const glm::mat4& mat4Value)
     {
+        SE_PROFILE_FUNCTION();
+
         UploadUniformMat4(strName, mat4Value);
     }
 
     void COpenGLShader::UploadUniformMat4(const std::string& strName, const glm::mat4& mat4Value)
     {
-		GLint location = glGetUniformLocation(m_nRendererID, strName.c_str());
-		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat4Value));
+        GLint location = glGetUniformLocation(m_nRendererID, strName.c_str());
+        glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat4Value));
     }
 
     const std::string& COpenGLShader::GetName() const
@@ -151,6 +177,8 @@ namespace  SandEngine {
 
     std::string COpenGLShader::ReadFile(const std::string& strFilepath)
     {
+        SE_PROFILE_FUNCTION();
+
         std::string strResult;
         std::ifstream in(strFilepath, std::ios::in | std::ios::binary); // ifstream closes itself due to RAII
         if (in)
@@ -177,6 +205,8 @@ namespace  SandEngine {
 
     std::unordered_map<unsigned int, std::string> COpenGLShader::PreProcess(const std::string& strSource)
     {
+        SE_PROFILE_FUNCTION();
+
         std::unordered_map<GLenum, std::string> shaderSources;
 
         const char* typeToken = "#type";
@@ -201,6 +231,8 @@ namespace  SandEngine {
 
     void COpenGLShader::Compile(const std::unordered_map<unsigned int, std::string>& shaderSources)
     {
+        SE_PROFILE_FUNCTION();
+
         GLuint program = glCreateProgram();
         SE_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
         std::array<GLenum, 2> glShaderIDs;

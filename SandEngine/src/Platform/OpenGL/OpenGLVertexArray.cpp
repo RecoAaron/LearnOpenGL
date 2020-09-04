@@ -29,26 +29,36 @@ namespace SandEngine {
 
     COpenGLVertexArray::COpenGLVertexArray()
     {
+        SE_PROFILE_FUNCTION();
+
         glCreateVertexArrays(1, &m_nRendererID);
     }
 
     COpenGLVertexArray::~COpenGLVertexArray()
     {
+        SE_PROFILE_FUNCTION();
+
         glDeleteVertexArrays(1, &m_nRendererID);
     }
 
     void COpenGLVertexArray::Bind() const
     {
+        SE_PROFILE_FUNCTION();
+
         glBindVertexArray(m_nRendererID);
     }
 
     void COpenGLVertexArray::Unbind() const
     {
+        SE_PROFILE_FUNCTION();
+
         glBindVertexArray(0);
     }
 
     void COpenGLVertexArray::AddVertexBuffer(const Ref<CVertexBuffer>& pVertexBuffer)
     {
+        SE_PROFILE_FUNCTION();
+
         SE_CORE_ASSERT(pVertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
 
         pVertexBuffer->Bind();
@@ -102,6 +112,8 @@ namespace SandEngine {
 
     void COpenGLVertexArray::SetIndexBuffer(const Ref<CIndexBuffer>& pIndexBuffer)
     {
+        SE_PROFILE_FUNCTION();
+
         pIndexBuffer->Bind();
 
         m_pIndexBuffer = pIndexBuffer;

@@ -15,6 +15,8 @@ namespace SandEngine {
 
     void COpenGLContext::Init()
     {
+        SE_PROFILE_FUNCTION();
+
         glfwMakeContextCurrent(m_pWindowHandle);
         int nStatus = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
         SE_CORE_ASSERT(nStatus, "Failed to initialize Glad!");
@@ -29,6 +31,8 @@ namespace SandEngine {
 
     void COpenGLContext::SwapBuffers()
     {
+        SE_PROFILE_FUNCTION();
+
         glfwSwapBuffers(m_pWindowHandle);
     }
 }

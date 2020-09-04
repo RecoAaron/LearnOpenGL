@@ -20,16 +20,22 @@ namespace SandEngine {
 
     CWindowsWindow::CWindowsWindow(const SWindowProps& props)
     {
+        SE_PROFILE_FUNCTION();
+
         Init(props);
     }
 
     CWindowsWindow::~CWindowsWindow()
     {
+        SE_PROFILE_FUNCTION();
+
         Shutdown();
     }
 
     void CWindowsWindow::Init(const SWindowProps& props)
     {
+        SE_PROFILE_FUNCTION();
+
         m_Data.m_strTitle = props.m_strTitle;
         m_Data.m_nWidth = props.m_nWidth;
         m_Data.m_nHeight = props.m_nHeight;
@@ -143,6 +149,8 @@ namespace SandEngine {
 
     void CWindowsWindow::Shutdown()
     {
+        SE_PROFILE_FUNCTION();
+
         glfwDestroyWindow(m_pWindow);
         --s_nGLFWWindowCount;
 
@@ -154,6 +162,8 @@ namespace SandEngine {
 
     void CWindowsWindow::OnUpdate()
     {
+        SE_PROFILE_FUNCTION();
+
         glfwPollEvents();
         m_pContext->SwapBuffers();
     }
@@ -165,6 +175,8 @@ namespace SandEngine {
 
     void CWindowsWindow::SetVSync(bool bEnable)
     {
+        SE_PROFILE_FUNCTION();
+
         if (bEnable)
             glfwSwapInterval(1);
         else

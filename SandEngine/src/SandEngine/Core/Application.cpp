@@ -11,6 +11,8 @@ namespace SandEngine {
 
     CApplication::CApplication(const std::string& name /* = "Sand Engine" */)
     {
+        SE_PROFILE_FUNCTION();
+
         SE_CORE_ASSERT(!s_pInstance, "Application already exists!");
         s_pInstance = this;
         m_pWindow = CWindow::Create(SWindowProps(name));
@@ -24,25 +26,35 @@ namespace SandEngine {
 
     CApplication::~CApplication()
     {
+        SE_PROFILE_FUNCTION();
+
         CRenderer::Shutdown();
     }
 
     void CApplication::PushLayer(CLayer* pLayer)
     {
+        SE_PROFILE_FUNCTION();
+
         m_LayerStack.PushLayer(pLayer);
         pLayer->OnAttach();
     }
 
     void CApplication::PushOverlay(CLayer* pOverlay)
     {
+        SE_PROFILE_FUNCTION();
+
         m_LayerStack.PushOverlay(pOverlay);
         pOverlay->OnAttach();
     }
 
     void CApplication::Run()
     {
+        SE_PROFILE_FUNCTION();
+
         while (m_bRunning)
         {
+            SE_PROFILE_FUNCTION("Application RunLoop");
+
             float nTime = m_pWindow->GetWindowTime();
             CTimestep timestep = nTime - m_nLastFrameTime;
             m_nLastFrameTime = nTime;
@@ -51,6 +63,8 @@ namespace SandEngine {
             {
                 // 所有层级进行更新
                 {
+                    SE_PROFILE_FUNCTION("LayerStack OnUpdate");
+
                     for (CLayer* pLayer : m_LayerStack)
                         pLayer->OnUpdate(timestep);
                 }
@@ -58,6 +72,8 @@ namespace SandEngine {
                 // 所有层级进行 ImGui 绘制操作
                 m_pImGuiLayer->Begin();
                 {
+                    SE_PROFILE_FUNCTION("LayerStack OnImGuiRender");
+
                     for (CLayer* layer : m_LayerStack)
                         layer->OnImGuiRender();
                 }
@@ -70,6 +86,8 @@ namespace SandEngine {
 
     void CApplication::OnEvent(CEvent& event)
     {
+        SE_PROFILE_FUNCTION();
+
         CEventDispatcher dispatcher(event);
         dispatcher.Dispatch<CWindowCloseEvent>(SE_BIND_EVENT_FN(CApplication::OnWindowClose));
         dispatcher.Dispatch<CWindowResizedEvent>(SE_BIND_EVENT_FN(CApplication::OnWindowResize));
@@ -90,6 +108,8 @@ namespace SandEngine {
 
     bool CApplication::OnWindowResize(CWindowResizedEvent& event)
     {
+        SE_PROFILE_FUNCTION();
+
         if (event.GetWidth() == 0 || event.GetHeight() == 0)
         {
             m_bMinimized = true;

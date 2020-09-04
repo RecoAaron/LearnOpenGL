@@ -15,6 +15,8 @@
 
 #include "SandEngine/Core/Log.h"
 
+#include "SandEngine/Debug/Instrumentor.h"
+
 #ifdef SE_PLATFORM_WINDOWS
     #include <Windows.h>
 #endif

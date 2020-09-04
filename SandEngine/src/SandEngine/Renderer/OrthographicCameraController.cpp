@@ -15,6 +15,8 @@ namespace SandEngine {
 
     void COrthographicCameraController::OnUpdate(CTimestep& time)
     {
+        SE_PROFILE_FUNCTION();
+
         glm::vec3 vec3CameraPosition = m_Camera.GetPosition();
         float nCameraRotation = m_Camera.GetRotation();
 
@@ -62,6 +64,8 @@ namespace SandEngine {
 
     void COrthographicCameraController::OnEvent(CEvent& event)
     {
+        SE_PROFILE_FUNCTION();
+
         CEventDispatcher dispatcher(event);
         dispatcher.Dispatch<CMouseScrolledEvent>(SE_BIND_EVENT_FN(COrthographicCameraController::OnMouseScrolled));
         dispatcher.Dispatch<CWindowResizedEvent>(SE_BIND_EVENT_FN(COrthographicCameraController::OnWindowResized));
@@ -69,12 +73,16 @@ namespace SandEngine {
 
     void COrthographicCameraController::OnResize(float nWidth, float nHeight)
     {
+        SE_PROFILE_FUNCTION();
+
         m_nAspectRatio = nWidth / nHeight;
         m_Camera.SetProjection(-m_nAspectRatio * m_nZoomLevel, m_nAspectRatio * m_nZoomLevel, -m_nZoomLevel, m_nZoomLevel);
     }
 
     bool COrthographicCameraController::OnMouseScrolled(CMouseScrolledEvent& event)
     {
+        SE_PROFILE_FUNCTION();
+
         m_nZoomLevel -= event.GetYOffset() * 0.25f;
         m_nZoomLevel = std::max(m_nZoomLevel, 0.25f);
         m_Camera.SetProjection(-m_nAspectRatio * m_nZoomLevel, m_nAspectRatio * m_nZoomLevel, -m_nZoomLevel, m_nZoomLevel);
@@ -83,6 +91,8 @@ namespace SandEngine {
 
     bool COrthographicCameraController::OnWindowResized(CWindowResizedEvent& event)
     {
+        SE_PROFILE_FUNCTION();
+
         OnResize((float)event.GetWidth(), (float)event.GetHeight());
         return false;
     }

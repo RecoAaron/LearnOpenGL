@@ -28,6 +28,8 @@ namespace SandEngine {
 
     void COpenGLRendererAPI::Init()
     {
+        SE_PROFILE_FUNCTION();
+
     #ifdef SE_DEBUG
         glEnable(GL_DEBUG_OUTPUT);
         glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
